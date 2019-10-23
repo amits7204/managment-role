@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorAccent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:hint="Enter Full Name"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:textColor="@color/colorPrimaryBlack"
+        android:background="@drawable/primary_round_box"
+        android:textColorHint="@color/colorPrimaryHint"
+        android:paddingLeft="16dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:hint="Enter Father's Name or Husband Name"
+        android:textColor="@color/colorPrimaryBlack"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/primary_round_box"
+        android:textColorHint="@color/colorPrimaryHint"
+        android:paddingLeft="16dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:textColor="@color/colorPrimaryBlack"
+        android:hint="Mother's name"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/primary_round_box"
+        android:textColorHint="@color/colorPrimaryHint"
+        android:paddingLeft="16dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:textColor="@color/colorPrimaryBlack"
+        android:hint="Mobile Number"
+        android:inputType="phone"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/primary_round_box"
+        android:textColorHint="@color/colorPrimaryHint"
+        android:paddingLeft="16dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_marginLeft="24dp"
+            android:background="@drawable/primary_round_box"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/male" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/colorPrimaryBlack"
+                android:text="Male"
+                android:layout_gravity="center"
+                android:textSize="16dp"
+                android:fontFamily="@font/roboto_slab_bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/primary_round_box"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/female"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:textColor="@color/colorPrimaryBlack"
+                android:text="Female"
+                android:layout_gravity="center"
+                android:textSize="16dp"
+                android:layout_marginRight="8dp"
+                android:fontFamily="@font/roboto_slab_bold"/>
+        </LinearLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:textColor="@color/colorPrimaryBlack"
+                android:hint="Date of Birth"
+                android:inputType="date"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/primary_round_box"
+                android:textColorHint="@color/colorPrimaryHint"
+                android:paddingLeft="16dp"/>
+        </LinearLayout>
+</LinearLayout>
