@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <solid android:color="@color/colorSecondbutton" />
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <corners
-        android:radius="20dp"/>
-</shape>
+    <!-- Bottom 2dp Shadow -->
+    <item>
+        <shape  android:shape="rectangle">
+
+            <solid android:color="@color/colorSecondarySecondbutton" />
+            <corners android:radius="16dp" />
+
+        </shape>
+    </item>
+
+    <!-- White Top color -->
+    <item android:bottom="14px">
+
+        <shape  android:shape="rectangle">
+
+            <solid android:color="@color/colorSecondbutton" />
+            <corners android:radius="16dp" />
+
+
+        </shape>
+
+    </item>
+
+
+</layer-list>

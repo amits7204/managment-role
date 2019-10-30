@@ -24,5 +24,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(lIntent);
             }
         });
+
+        lUserRegButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent lIntent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(lIntent);
+            }
+        });
+
+        lAdminRegButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent lIntent = new Intent(MainActivity.this, AdminActivity.class);
+                startActivity(lIntent);
+            }
+        });
     }
 }
