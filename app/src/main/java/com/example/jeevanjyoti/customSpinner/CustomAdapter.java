@@ -43,12 +43,12 @@ public class CustomAdapter extends ArrayAdapter<CustomItems> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.custom_spinner_layout, parent, false);
         }
         CustomItems items = getItem(position);
-        ImageView spinnerImage = convertView.findViewById(R.id.marital_status_image_view);
+//        ImageView spinnerImage = convertView.findViewById(R.id.marital_status_image_view);
         TextView spinnerName = convertView.findViewById(R.id.marital_status_name);
-        if (items != null && items.getSpinnerImage() != 0) {
-            Log.w("CustomAdapter", "Name Of State: "+items.getSpinnerImage());
-            spinnerImage.setVisibility(View.VISIBLE);
-            spinnerImage.setImageResource(items.getSpinnerImage());
+        if (items != null) {
+            Log.w("CustomAdapter", "Name Of State: ");
+//            spinnerImage.setVisibility(View.VISIBLE);
+//            spinnerImage.setImageResource(items.getSpinnerImage());
             spinnerName.setText(items.getSpinnerText());
         }else {
             spinnerName.setText(items != null ? items.getSpinnerText() : null);

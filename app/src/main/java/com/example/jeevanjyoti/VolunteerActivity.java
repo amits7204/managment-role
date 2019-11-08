@@ -59,12 +59,10 @@ public class VolunteerActivity extends AppCompatActivity {
         mMaleLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    mMaleLinearLayout.setBackground(getDrawable(R.drawable.text_view_shape));
-                    mMaleTextView.setTextColor(getColor(R.color.colorPrimaryBlack));
-                    mMenImageView.setImageDrawable(getDrawable(R.drawable.ic_men_black));
-                    mFemaleTextView.setTextColor(getColor(R.color.colorAccent));
-                }
+                mMaleLinearLayout.setBackground(getDrawable(R.drawable.text_view_shape));
+                mMaleTextView.setTextColor(getResources().getColor(R.color.colorPrimaryBlack));
+                mMenImageView.setImageDrawable(getDrawable(R.drawable.ic_men_black));
+                mFemaleTextView.setTextColor(getResources().getColor(R.color.colorAccent));
                 mFemaleLinearLayout.setBackground(getDrawable(R.drawable.secondary_primary_box));
                 String lMaleString = mMaleTextView.getText().toString();
                 Log.w(TAG,"Gender Status: "+lMaleString);
@@ -75,12 +73,10 @@ public class VolunteerActivity extends AppCompatActivity {
         mFemaleLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    mFemaleLinearLayout.setBackground(getDrawable(R.drawable.text_view_shape));
-                    mFemaleTextView.setTextColor(getColor(R.color.colorPrimaryBlack));
-                    mMaleTextView.setTextColor(getColor(R.color.colorAccent));
-                    mMenImageView.setImageDrawable(getDrawable(R.drawable.ic_men));
-                }
+                mFemaleLinearLayout.setBackground(getDrawable(R.drawable.text_view_shape));
+                mFemaleTextView.setTextColor(getResources().getColor(R.color.colorPrimaryBlack));
+                mMaleTextView.setTextColor(getResources().getColor(R.color.colorAccent));
+                mMenImageView.setImageDrawable(getDrawable(R.drawable.ic_men));
                 mMaleLinearLayout.setBackground(getDrawable(R.drawable.secondary_primary_box));
 
                 String lFemaleString = mFemaleTextView.getText().toString();

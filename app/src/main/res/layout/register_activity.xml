@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorPrimaryBlack">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbarStyle="outsideInset">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -16,6 +11,7 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/full_name_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginLeft="24dp"
@@ -28,6 +24,7 @@
                 android:textColorHint="@color/colorSecondaryHint" />
 
             <EditText
+                android:id="@+id/father_name_edit_Text"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginLeft="24dp"
@@ -40,6 +37,7 @@
                 android:textColorHint="@color/colorSecondaryHint" />
 
             <EditText
+                android:id="@+id/mother_name_edit_Text"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginLeft="24dp"
@@ -52,11 +50,13 @@
                 android:textColorHint="@color/colorSecondaryHint"  />
 
             <EditText
+                android:id="@+id/mobile_number_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="24dp"
+                android:maxLength="10"
                 android:hint="Mobile Number"
                 android:inputType="phone"
                 android:paddingLeft="16dp"
@@ -68,71 +68,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="58dp"
-                    android:layout_marginLeft="24dp"
-                    android:background="@drawable/secondary_primary_box"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:src="@drawable/ic_men" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginRight="8dp"
-                        android:fontFamily="@font/roboto_slab_bold"
-                        android:text="Male"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="16dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="58dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/secondary_primary_box"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:src="@drawable/ic_female" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginRight="8dp"
-                        android:fontFamily="@font/roboto_slab_bold"
-                        android:text="Female"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <EditText
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <Spinner
+                    android:id="@+id/gender_spinner"
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="24dp"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="6dp"
+                    android:background="@drawable/spinner_shape" />
+
+                <TextView
+                    android:id="@+id/dob_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
                     android:hint="Date of Birth"
                     android:inputType="date"
-                    android:paddingLeft="16dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center"
                     android:background="@drawable/secondary_primary_box"
                     android:textColor="@color/colorAccent"
-                    android:textColorHint="@color/colorSecondaryHint" />
+                    android:textColorHint="@color/colorSecondaryHint"
+                    android:layout_weight="1"/>
 
             </LinearLayout>
 
@@ -155,6 +119,16 @@
                 android:background="@drawable/spinner_shape" />
 
             <Spinner
+                android:id="@+id/education_status_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/spinner_shape" />
+
+            <Spinner
                 android:id="@+id/occupation_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
@@ -164,6 +138,7 @@
                 android:background="@drawable/spinner_shape" />
 
             <EditText
+                android:id="@+id/occupation_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginLeft="24dp"
@@ -178,6 +153,7 @@
                 android:textColorHint="@color/colorSecondaryHint"  />
 
             <EditText
+                android:id="@+id/flat_room_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginLeft="24dp"
@@ -192,6 +168,7 @@
                 android:textColorHint="@color/colorSecondaryHint"  />
 
             <EditText
+                android:id="@+id/building_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginLeft="24dp"
@@ -206,6 +183,7 @@
                 android:textColorHint="@color/colorSecondaryHint"  />
 
             <EditText
+                android:id="@+id/area_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginLeft="24dp"
@@ -220,13 +198,15 @@
                 android:textColorHint="@color/colorSecondaryHint"  />
 
             <EditText
+                android:id="@+id/pin_code_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="24dp"
-                android:hint="Area/locality"
+                android:hint="Pin Code"
                 android:inputType="number"
+                android:maxLength="6"
                 android:lines="3"
                 android:paddingLeft="16dp"
                 android:background="@drawable/secondary_primary_box"
@@ -252,6 +232,7 @@
                 android:background="@drawable/spinner_shape" />
 
             <Button
+                android:id="@+id/register_button"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="Register"
@@ -261,5 +242,4 @@
                 android:fontFamily="@font/roboto_slab_bold"
                 android:layout_margin="24dp" />
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+</ScrollView>
