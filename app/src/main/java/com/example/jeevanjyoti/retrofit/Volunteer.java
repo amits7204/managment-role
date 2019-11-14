@@ -1,22 +1,33 @@
-package com.example.jeevanjyoti;
+package com.example.jeevanjyoti.retrofit;
 
-import android.graphics.Bitmap;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Volunteer {
-
-    private Bitmap mProfileImage;
+    @SerializedName("image")
+    @Expose
+    private String mProfileImage;
+    @SerializedName("gender")
+    @Expose
     private String mGender;
+    @SerializedName("name")
+    @Expose
     private String mFullName;
+    @SerializedName("mobile")
+    @Expose
     private String mMobileNumber;
+    @SerializedName("address")
+    @Expose
     private String mAddress;
 
-    public Bitmap getProfileImage() {
-        return mProfileImage;
-    }
-
-    public void setProfileImage(Bitmap aProfileImage) {
-        this.mProfileImage = aProfileImage;
-    }
+//    public Bitmap getProfileImage() {
+//        return mProfileImage;
+//    }
+//
+//    public void setProfileImage(Bitmap aProfileImage) {
+//        this.mProfileImage = aProfileImage;
+//    }
 
     public String getGender() {
         return mGender;

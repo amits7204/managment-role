@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
+        android:elevation="8dp"
+        android:orientation="vertical"
+        android:background="@drawable/volunteer_details_shape">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="18dp">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/playstore_logo"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amit Singh"
+                android:fontFamily="@font/roboto_slab_bold"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="24dp"
+                android:textSize="30dp"
+                android:textColor="@color/colorForRecyclerviewText"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:text="8697903433"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/roboto_slab_bold"
+                android:textColor="@color/colorForRecyclerviewText"
+                android:textSize="24sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:text="Male"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/roboto_slab_bold"
+                android:textColor="@color/colorForRecyclerviewText"
+                android:textSize="24sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:text="Korammangala 6th Block, Bangalore"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/roboto_slab_bold"
+            android:textColor="@color/colorForRecyclerviewText"
+            android:textSize="16sp"/>
+</LinearLayout>
+</LinearLayout>

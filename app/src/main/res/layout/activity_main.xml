@@ -5,36 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/colorAccent"
+    android:background="@color/colorPrimaryBlack"
     android:orientation="vertical"
-    android:paddingTop="140dp">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:fontFamily="@font/roboto_slab_bold"
-            android:text="Jeevan"
-            android:textColor="@color/colorPrimaryBlack"
-            android:textSize="46dp" />
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="8dp"
-            android:src="@drawable/leaf"/>
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="180dp"
-        android:fontFamily="@font/roboto_slab_bold"
-        android:text="Jyoti"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="46dp" />
+    android:paddingTop="100dp">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="44dp"
+        android:elevation="16dp"
+        android:src="@drawable/playstore_logo"/>
 
     <LinearLayout
         android:layout_width="match_parent"

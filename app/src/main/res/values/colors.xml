@@ -7,14 +7,21 @@
     <color name="colorPrimaryBlack">#040C0E</color>
     <color name="colorPrimarylinearLaout">#132226</color>
     <color name="colorSecondarylinearLaout">#525B56</color>
-    <color name="colorFirstbutton">#ef5350</color>
-    <color name="colorsecondaryFirstButton">#e57373</color>
-    <color name="colorSecondbutton">#311B92</color>
-    <color name="colorSecondarySecondbutton">#303F9F</color>
+    <color name="colorFirstbutton">#2E4600</color>
+    <color name="colorsecondaryFirstButton">#486B00</color>
+    <color name="colorSecondbutton">#7D4427</color>
+    <color name="colorForRecyclerview">#acbdd3</color>
+    <color name="colorForRecyclerviewText">#c2d5db</color>
+    <color name="colorForRecyclerviewcardI">#5d80b6</color>
+    <color name="colorForRecyclerviewcardII">#131925</color>
+    <color name="colorSecondarySecondbutton">#5D4037</color>
     <color name="colorThirdbutton">#d50000</color>
     <color name="colorPrimaryHint">#424242</color>
-    <color name="colorPrimarybutton">#FFD600</color>
+    <color name="colorPrimarybutton">#CDDC39</color>
+    <color name="yellowcolorPrimarybutton">#A2C523</color>
     <color name="colorPrimarybox">#A4978E</color>
+    <color name="goldencolorPrimary">#C99E10</color>
+    <color name="yellocolor">#FFEE58</color>
     <color name="colorSecondaryHint">#EBF2EA</color>
     <color name="colorPrimaryAdmin">#77A6F7</color>
 </resources>

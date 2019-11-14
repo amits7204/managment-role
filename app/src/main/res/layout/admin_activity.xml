@@ -38,10 +38,13 @@
         android:src="@drawable/admin"/>
 
     <EditText
+        android:id="@+id/admin_mobile"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:background="@drawable/admin_edit_text_shape"
         android:layout_margin="24dp"
+        android:inputType="phone"
+        android:maxLength="10"
         android:hint="Enter Your 10 digit mobile Number"
         android:paddingLeft="8dp"
         android:ems="10"
