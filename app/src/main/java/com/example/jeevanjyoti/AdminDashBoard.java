@@ -8,8 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.jeevanjyoti.registerencapsulation.UserRegister;
-
 public class AdminDashBoard extends AppCompatActivity {
     public static final String TAG = "AdminDashBoard";
     private TextView mUserRegister, mUserDetails, mVolunteerDetails;
@@ -22,7 +20,7 @@ public class AdminDashBoard extends AppCompatActivity {
         mVolunteerDetails = findViewById(R.id.volunteer_detail_textview);
         goToUserRegister();
         goToVolunteerDetails();
-
+        goToUserDetails();
     }
 
     public void goToUserRegister(){
@@ -39,7 +37,8 @@ public class AdminDashBoard extends AppCompatActivity {
         mUserDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent lIntent = new Intent(AdminDashBoard.this, UserDetailsActivity.class);
+                startActivity(lIntent);
             }
         });
     }
@@ -58,4 +57,6 @@ public class AdminDashBoard extends AppCompatActivity {
     public void onBackPressed() {
         moveTaskToBack(true);
     }
+
+
 }

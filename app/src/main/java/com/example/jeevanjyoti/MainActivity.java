@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,14 +20,31 @@ public class MainActivity extends AppCompatActivity {
         Button lUserRegButton = findViewById(R.id.user_reg_button);
         Button lVolunteerRegButton = findViewById(R.id.volunteer_reg_button);
         Button lAdminRegButton = findViewById(R.id.admin_reg_button);
+        TextView lAbout = findViewById(R.id.about_id);
+        lAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent lIntent = new Intent(MainActivity.this, AboutUsActivity.class);
+                startActivity(lIntent);
+            }
+        });
         final String MY_PREFS_NAME = "MyPrefsFile";
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         final String lMobileNumber = prefs.getString("mobile", null);
+
+        final String MY_PREFS_MOBILE = "MyPrefsFile";
+        SharedPreferences prefsv = getSharedPreferences(MY_PREFS_MOBILE, MODE_PRIVATE);
+        final String lMobileNumberv = prefsv.getString("vmobile", null);
         lVolunteerRegButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent lIntent = new Intent(MainActivity.this, VolunteerActivity.class);
-                startActivity(lIntent);
+                if (lMobileNumberv==null) {
+                    Intent lIntent = new Intent(MainActivity.this, VolunteerActivity.class);
+                    startActivity(lIntent);
+                }else {
+                    Intent lIntent = new Intent(MainActivity.this, VolunteerDashBoard.class);
+                    startActivity(lIntent);
+                }
             }
         });
 

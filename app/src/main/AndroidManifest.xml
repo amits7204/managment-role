@@ -2,9 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.jeevanjyoti">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -29,7 +34,25 @@
         <activity android:name=".AdminOtpVerifyActivity" />
         <activity android:name=".AdminDashBoard" />
         <activity android:name=".VolunteerDetails" />
+        <activity android:name=".UserDetailsActivity" />
+        <activity android:name=".UserConfermActivity" />
+        <activity android:name=".AboutUsActivity" />
+        <activity android:name=".VolunteerDashBoard" />
 
+        <receiver
+            android:name=".broadcastReceiver.SmsDetector">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".networkReceiver.NetworkBroadCastReceiver"
+            android:label="NetWorkBroadCastReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

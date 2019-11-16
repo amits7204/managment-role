@@ -21,13 +21,13 @@ public class Volunteer {
     @Expose
     private String mAddress;
 
-//    public Bitmap getProfileImage() {
-//        return mProfileImage;
-//    }
-//
-//    public void setProfileImage(Bitmap aProfileImage) {
-//        this.mProfileImage = aProfileImage;
-//    }
+    public String getProfileImage() {
+        return mProfileImage;
+    }
+
+    public void setProfileImage(String aProfileImage) {
+        this.mProfileImage = aProfileImage;
+    }
 
     public String getGender() {
         return mGender;

@@ -1,12 +1,15 @@
 package com.example.jeevanjyoti;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -22,6 +25,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.jeevanjyoti.retrofit.RetrofitClient;
 import com.example.jeevanjyoti.retrofit.UserRegisterApi;
@@ -50,8 +55,8 @@ public class VolunteerActivity extends AppCompatActivity {
     private int mWidth, mHieght;
     LinearLayout mMaleLinearLayout, mFemaleLinearLayout;
     private View.OnClickListener mOnClickListener;
-    private String mGender;
-    public String mMediaPath;
+    private String mGender = "";
+    public String mMediaPath = "";
     private ProgressDialog mProgressDialog;
     Volunteer mVolunteer = new Volunteer();
     @Override
@@ -70,6 +75,12 @@ public class VolunteerActivity extends AppCompatActivity {
         mMenImageView = findViewById(R.id.men_imageView);
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage("Processing...");
+        if (Build.VERSION.SDK_INT >= 23) {
+            int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            }
+        }
         mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +91,6 @@ public class VolunteerActivity extends AppCompatActivity {
         getGender();
         mMaleLinearLayout.setOnClickListener(mOnClickListener);
         mFemaleLinearLayout.setOnClickListener(mOnClickListener);
-        getGender();
         registerVolunteer();
     }
 
@@ -197,29 +207,54 @@ public class VolunteerActivity extends AppCompatActivity {
     public void getRespose(){
         mProgressDialog.show();
         final String lNameString = mNameEditText.getText().toString();
+        if(lNameString.isEmpty()){
+            mNameEditText.setError("Please fill Full name");
+            mNameEditText.requestFocus();
+        }
         final String lMobileNumberString = mMobileNumberEditText.getText().toString();
+        if (lMobileNumberString.isEmpty()){
+            mMobileNumberEditText.setError("Please Fill the mobile number");
+            mMobileNumberEditText.requestFocus();
+        }
         final String lFullAddressString = mFullAddressEditText.getText().toString();
+        if (lFullAddressString.isEmpty()){
+            mFullAddressEditText.setError("Please fill the Full Address");
+            mFullAddressEditText.requestFocus();
+        }
             Log.w(TAG,"Onclick Button");
             mVolunteer.setFullName(lNameString);
             mVolunteer.setMobileNumber(lMobileNumberString);
             mVolunteer.setAddress(lFullAddressString);
             // Map is used to multipart the file using okhttp3.RequestBody
             Log.w(TAG,"MEDIA PATH: "+ mMediaPath);
+            try {
+                if (mMediaPath != null) {
+                    mFile = new File(mMediaPath);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Plese choose Profile pic", Toast.LENGTH_SHORT).show();
+                }
+            }catch (Exception ex){
+                Toast.makeText(getApplicationContext(),mMediaPath,Toast.LENGTH_SHORT).show();
+            }
 
-            File file = new File(mMediaPath);
-            String root = Environment.getExternalStorageState(file);
+            String root = Environment.getExternalStorageState(mFile);
+        Log.w(TAG,"Root PATH: "+ mFile);
 //            file.mkdir();
             // Parsing any Media type file
-            RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), root);
+            Volunteer lVolunteer = new Volunteer();
+            RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), mFile);
             final MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData(
-                    "file", root, requestBody);
+                    "image", String.valueOf(mFile), requestBody);
 //                RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), file.getName());
             RequestBody lNameRequest = RequestBody.create(MediaType.parse("text/plain")
                     , lNameString);
-            RequestBody lMobileRequest = RequestBody.create(MediaType.parse("text/plain")
+            final RequestBody lMobileRequest = RequestBody.create(MediaType.parse("text/plain")
                     , lMobileNumberString);
             RequestBody lFUllAddressRequest = RequestBody.create(MediaType.parse("text/plain")
                     , lFullAddressString);
+            if (mGender.isEmpty()){
+                Toast.makeText(getApplicationContext(),"Please choose Your gender",Toast.LENGTH_SHORT).show();
+            }
             RequestBody lGender = RequestBody.create(MediaType.parse("text/plain"), mGender);
             UserRegisterApi lUserRegisterApi = RetrofitClient.postUserdata();
             Call<Volunteer> lCallUserResponse = lUserRegisterApi
@@ -228,10 +263,18 @@ public class VolunteerActivity extends AppCompatActivity {
             lCallUserResponse.enqueue(new Callback<Volunteer>() {
                 @Override
                 public void onResponse(Call<Volunteer> call, Response<Volunteer> response) {
-                    Log.w("RegisterActivity", "Response: " + response+ " File Path: "+ fileToUpload.body());
-                    Intent lIntent = new Intent(VolunteerActivity.this, OtpVerficationActivity.class);
-                    startActivity(lIntent);
-                    mProgressDialog.dismiss();
+                    Log.w("RegisterActivity", "Response: " + response.body()+ " File Path: "+ fileToUpload.toString());
+                    if (response.isSuccessful()){
+                        Intent lIntent = new Intent(VolunteerActivity.this, OtpVerficationActivity.class);
+                        lIntent.putExtra("vmobile", lMobileNumberString);
+                        startActivity(lIntent);
+                        mProgressDialog.dismiss();
+                    }else{
+//                        Log.w(TAG,"500 Internal Error: "+response.body());
+                        Toast.makeText(getApplicationContext(),"Something is wrong", Toast.LENGTH_SHORT).show();
+                        mProgressDialog.dismiss();
+                    }
+
                 }
 
                 @Override

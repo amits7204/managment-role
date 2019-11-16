@@ -21,6 +21,8 @@
         android:layout_marginLeft="24dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
+        android:maxLength="6"
+        android:inputType="number"
         android:hint="Enter 6 digit number"
         android:textColorHint="@color/colorSecondaryHint"
         android:textColor="@color/colorAccent"/>

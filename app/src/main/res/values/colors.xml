@@ -14,6 +14,7 @@
     <color name="colorForRecyclerviewText">#c2d5db</color>
     <color name="colorForRecyclerviewcardI">#5d80b6</color>
     <color name="colorForRecyclerviewcardII">#131925</color>
+    <color name="coloruserDetailsShape">#023924</color>
     <color name="colorSecondarySecondbutton">#5D4037</color>
     <color name="colorThirdbutton">#d50000</color>
     <color name="colorPrimaryHint">#424242</color>
@@ -24,4 +25,5 @@
     <color name="yellocolor">#FFEE58</color>
     <color name="colorSecondaryHint">#EBF2EA</color>
     <color name="colorPrimaryAdmin">#77A6F7</color>
+    <color name="colorAboutUsBackGround">#FFCC80</color>
 </resources>

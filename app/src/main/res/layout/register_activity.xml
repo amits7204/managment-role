@@ -181,6 +181,20 @@
                 android:background="@drawable/secondary_primary_box"
                 android:textColor="@color/colorAccent"
                 android:textColorHint="@color/colorSecondaryHint"  />
+            <EditText
+                android:id="@+id/road_lane"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:hint="Road/Street/Lane"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:paddingLeft="16dp"
+                android:background="@drawable/secondary_primary_box"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorSecondaryHint"  />
 
             <EditText
                 android:id="@+id/area_edit_text"

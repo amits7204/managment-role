@@ -8,12 +8,24 @@
     android:background="@color/colorPrimaryBlack"
     android:orientation="vertical"
     android:paddingTop="100dp">
-
+    <TextView
+        android:id="@+id/about_id"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginRight="24dp"
+        android:layout_gravity="right"
+        android:layout_marginBottom="24dp"
+        android:text="A"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:textColor="@color/colorForRecyclerviewText"
+        android:background="@drawable/about_us_circle"/>
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="8dp"
         android:elevation="16dp"
         android:src="@drawable/playstore_logo"/>
 
@@ -21,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="4dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:background="@drawable/signup_shape"

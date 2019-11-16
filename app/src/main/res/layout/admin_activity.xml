@@ -5,9 +5,21 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="@color/colorPrimaryAdmin">
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="false"
+        android:max="100"
+        android:minHeight="50dp"
+        android:minWidth="200dp"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"

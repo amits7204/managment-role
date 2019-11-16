@@ -1,6 +1,7 @@
 package com.example.jeevanjyoti;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -40,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity
     private Spinner mMaritalSpinner, mEducationSpinner, mOccupationSpinner, mStateSpinner,
             mDistrictSpinner, mGenderSpinner, mEducationStatusSpinner;
     private EditText mFullName, mFatherName, mMotherName, mMobileNumber, mOccupationEditText,
-            mFlatEditText, mBuildingEditText, mAreaEditText, mPinCodeEditText;
+            mFlatEditText, mBuildingEditText, mAreaEditText, mPinCodeEditText, mRoadStreet;
     private EditText mDOBEditText;
     Button mRegisterButton;
     ArrayList<CustomItems> mStateCustomList = new ArrayList<>();
@@ -52,7 +53,8 @@ public class RegisterActivity extends AppCompatActivity
     ArrayList<CustomItems> mEducationCustomList = new ArrayList<>();
     ArrayList<CustomItems> mOccupationCustomList = new ArrayList<>();
     ArrayList<CustomItems> mEducationStatusList = new ArrayList<>();
-    public String mMaritalStatus, mEducation, mOccupation, mEducationStatus, mStateString, mDistrictString;
+    public String mMaritalStatus, mEducation, mOccupation, mEducationStatus, mStateString
+            , mDistrictString, mRoadLane;
     private LinearLayout mMaleLinearLayout, mFemaleLinearLayout;
     private UserRegister mUserRegister = new UserRegister();
     private String mGender;
@@ -72,6 +74,7 @@ public class RegisterActivity extends AppCompatActivity
         mPinCodeEditText = findViewById(R.id.pin_code_edit_text);
         mGenderSpinner = findViewById(R.id.gender_spinner);
         mDOBEditText = findViewById(R.id.dob_text_view);
+        mRoadStreet = findViewById(R.id.road_lane);
         mRegisterButton = findViewById(R.id.register_button);
         mMaleLinearLayout = findViewById(R.id.male_linear_layout);
         mFemaleLinearLayout = findViewById(R.id.female_linear_layout);
@@ -303,7 +306,18 @@ public class RegisterActivity extends AppCompatActivity
                         dataAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(dataAdapter);
                         mDistrictString = adapterView.getItemAtPosition(aPosition).toString();
-                        Log.w(TAG,"District text: "+mDistrictString);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
 
                     case "Arunachal Pradesh":
@@ -339,6 +353,18 @@ public class RegisterActivity extends AppCompatActivity
                         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         dataAdapter2.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(dataAdapter2);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
 
                     case "Assam":
@@ -382,6 +408,18 @@ public class RegisterActivity extends AppCompatActivity
                         lAssamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lAssamAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lAssamAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Bihar":
                         List<String> lBiharDistrictlist = new ArrayList<String>();
@@ -429,6 +467,18 @@ public class RegisterActivity extends AppCompatActivity
                         lBiharAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lBiharAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lBiharAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Chhattisgarh":
                         List<String> lChhattisgarhDistrictlist = new ArrayList<String>();
@@ -466,6 +516,18 @@ public class RegisterActivity extends AppCompatActivity
                         lChhattisgarhAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lChhattisgarhAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lChhattisgarhAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Goa":
                         List<String> lGoaDistrictlist = new ArrayList<String>();
@@ -523,6 +585,18 @@ public class RegisterActivity extends AppCompatActivity
                         lGujaratAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lGujaratAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lGujaratAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                        break;
                     case "Haryana":
                         List<String> lHaryanaDistrictlist = new ArrayList<String>();
@@ -554,6 +628,18 @@ public class RegisterActivity extends AppCompatActivity
                         lHaryanaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lHaryanaAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lHaryanaAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Himachal Pradesh":
                         List<String> lHpDistrictlist = new ArrayList<String>();
@@ -575,6 +661,18 @@ public class RegisterActivity extends AppCompatActivity
                         lHPAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lHPAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lHPAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Jammu and kashmir":
                         List<String> lJKDistrictlist = new ArrayList<String>();
@@ -604,6 +702,18 @@ public class RegisterActivity extends AppCompatActivity
                         lJKAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lJKAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lJKAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Ladakh":
                         List<String> lLadakhistrictlist = new ArrayList<String>();
@@ -615,6 +725,18 @@ public class RegisterActivity extends AppCompatActivity
                         lLadakhAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lLadakhAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lLadakhAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Jharkhand":
                         List<String> lJDistrictlist = new ArrayList<String>();
@@ -648,6 +770,18 @@ public class RegisterActivity extends AppCompatActivity
                         lJAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lJAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lJAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Karnataka":
                         List<String> lKDistrictlist = new ArrayList<String>();
@@ -687,6 +821,18 @@ public class RegisterActivity extends AppCompatActivity
                         lKAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lKAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lKAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Kerala":
                         List<String> lKeralaDistrictlist = new ArrayList<String>();
@@ -710,6 +856,18 @@ public class RegisterActivity extends AppCompatActivity
                         lKeralaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lKeralaAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lKeralaAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Madhya Pradesh":
                         List<String> lMpDistrictlist = new ArrayList<String>();
@@ -771,6 +929,18 @@ public class RegisterActivity extends AppCompatActivity
                         lMpAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lMpAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lMpAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Manipur":
                         List<String> lManipurDistrictlist = new ArrayList<String>();
@@ -796,6 +966,18 @@ public class RegisterActivity extends AppCompatActivity
                         lManipurAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lManipurAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lManipurAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Meghalaya":
                         List<String> lMeghalayaDistrictlist = new ArrayList<String>();
@@ -816,6 +998,18 @@ public class RegisterActivity extends AppCompatActivity
                         lMeghalayaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lMeghalayaAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lMeghalayaAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Mizoram":
                         List<String> lMZDistrictlist = new ArrayList<String>();
@@ -833,6 +1027,18 @@ public class RegisterActivity extends AppCompatActivity
                         lMZAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lMZAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lMZAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Nagaland":
                         List<String> lNLDistrictlist = new ArrayList<String>();
@@ -854,6 +1060,18 @@ public class RegisterActivity extends AppCompatActivity
                         lNlAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lNlAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lNlAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Odisha":
                         List<String> lODDistrictlist = new ArrayList<String>();
@@ -892,6 +1110,18 @@ public class RegisterActivity extends AppCompatActivity
                         lODAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lODAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lODAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Punjab":
                         List<String> lPBDistrictlist = new ArrayList<String>();
@@ -923,6 +1153,18 @@ public class RegisterActivity extends AppCompatActivity
                         lPBAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lPBAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lPBAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Rajasthan":
                         List<String> lRJDistrictlist = new ArrayList<String>();
@@ -965,6 +1207,18 @@ public class RegisterActivity extends AppCompatActivity
                         lRJAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lRJAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lRJAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Sikkim":
                         List<String> lSikkimDistrictlist = new ArrayList<String>();
@@ -978,6 +1232,18 @@ public class RegisterActivity extends AppCompatActivity
                         SikkimAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         SikkimAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(SikkimAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Tamil Nadu":
                         List<String> lTLDistrictlist = new ArrayList<String>();
@@ -1024,6 +1290,18 @@ public class RegisterActivity extends AppCompatActivity
                         lTNAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lTNAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lTNAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Telangana":
                         List<String> lTelanganaDistrictlist = new ArrayList<String>();
@@ -1066,6 +1344,18 @@ public class RegisterActivity extends AppCompatActivity
                         lTelanganaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lTelanganaAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lTelanganaAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "Uttarakhand":
                         List<String> lUKDistrictlist = new ArrayList<String>();
@@ -1172,6 +1462,18 @@ public class RegisterActivity extends AppCompatActivity
                         lUPAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lUPAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lUPAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                     case "West Bengal":
                         List<String> lWBDistrictlist = new ArrayList<String>();
@@ -1204,6 +1506,18 @@ public class RegisterActivity extends AppCompatActivity
                         lWBAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         lWBAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(lWBAdapter);
+                        mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                Log.w(TAG,"District text: "+mDistrictString);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                         break;
                      default:
                          List<String> lDfDistrictlist = new ArrayList<String>();
@@ -1241,6 +1555,7 @@ public class RegisterActivity extends AppCompatActivity
                 String lBuildingString = mBuildingEditText.getText().toString();
                 String lPinCodeString = mPinCodeEditText.getText().toString();
                 String lAreaString = mAreaEditText.getText().toString();
+                mRoadLane = mRoadStreet.getText().toString();
                 if (lFullNameString.isEmpty()){
                     mFullName.setError("Please fill the box");
                     mFullName.requestFocus();
@@ -1279,6 +1594,11 @@ public class RegisterActivity extends AppCompatActivity
                     mBuildingEditText.requestFocus();
                 }
 
+                else if (mRoadLane.isEmpty()){
+                    mRoadStreet.setError("Please Fill the box");
+                    mRoadStreet.requestFocus();
+                }
+
                 else if (lAreaString.isEmpty()){
                     mAreaEditText.setError("Please fill the box");
                     mAreaEditText.requestFocus();
@@ -1288,39 +1608,28 @@ public class RegisterActivity extends AppCompatActivity
                     mPinCodeEditText.setError("Please fill the box");
                     mPinCodeEditText.requestFocus();
                 } else {
+                    Intent lIntent = new Intent(RegisterActivity.this,UserConfermActivity.class);
+                    lIntent.putExtra("name",lFullNameString);
+                    lIntent.putExtra("fathername",lFatherNameString);
+                    lIntent.putExtra("mothername",lMotherNameString);
+                    lIntent.putExtra("mobile",lMobileNumberString);
+                    lIntent.putExtra("gender",mGender);
+                    lIntent.putExtra("dob",lDOBString);
+                    lIntent.putExtra("marital",mMaritalStatus);
+                    lIntent.putExtra("qualification",mEducation);
+                    lIntent.putExtra("edicationstatus",mEducationStatus);
+                    lIntent.putExtra("occupation",mOccupation);
+                    lIntent.putExtra("occupationDescription",lOccupationString);
+                    lIntent.putExtra("flat",lFlatString);
+                    lIntent.putExtra("building",lBuildingString);
+                    lIntent.putExtra("road",mRoadLane);
+                    lIntent.putExtra("area",lAreaString);
+                    lIntent.putExtra("pincode",lPinCodeString);
+                    lIntent.putExtra("state",mStateString);
+                    lIntent.putExtra("district",mDistrictString);
+                    startActivity(lIntent);
                     Log.w(TAG, "Selected Spinner: " + mMaritalSpinner.getAdapter().toString());
-                    UserRegisterApi lUserRegisterApi = RetrofitClient.postUserdata();
-                    Call<UserRegister> lCallUserResponse = lUserRegisterApi.sendUserData(
-                            "20",
-                            lFullNameString,
-                            lFatherNameString,
-                            lMotherNameString,
-                            lMobileNumberString,
-                            mGender,
-                            lDOBString,
-                            mMaritalStatus,
-                            mEducation,
-                            mEducationStatus,
-                            mOccupation,
-                            lOccupationString,
-                            lFlatString,
-                            lBuildingString,
-                            lAreaString,
-                            lPinCodeString,
-                            mStateString,
-                            mDistrictString);
 
-                    lCallUserResponse.enqueue(new Callback<UserRegister>() {
-                        @Override
-                        public void onResponse(Call<UserRegister> call, Response<UserRegister> response) {
-                            Log.w("RegisterActivity", "Response: " + response);
-                        }
-
-                        @Override
-                        public void onFailure(Call<UserRegister> call, Throwable t) {
-                            Log.w("RegisterActivity", "Response Failed: " + t.toString() + call.toString());
-                        }
-                    });
                 }
             }
         });

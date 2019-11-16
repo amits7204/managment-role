@@ -3,32 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorAccent"
+    android:background="@color/colorPrimaryBlack"
     android:clickable="true"
     android:fitsSystemWindows="true"
-    android:focusable="true"
-    android:id="@+id/relative_layout">
+    android:focusable="true">
     <Toolbar
-        android:id="@+id/volunteer_toolbar"
+        android:id="@+id/user_toolbar"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:title="Volunteer Details"
-        android:titleTextColor="@color/colorForRecyclerviewcardII"
-        android:titleMarginStart="100dp"/>
+        android:title="User Details" />
     <ProgressBar
-        android:id="@+id/volunteer_progressbar"
+        android:id="@+id/user_progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_centerInParent="true"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
+    <ImageView
+        android:id="@+id/download_image"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignRight="@+id/user_toolbar"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/ic_download_black"/>
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@+id/volunteer_toolbar"
-        android:id="@+id/volunteer_recylerview"
+        android:layout_below="@+id/user_toolbar"
+        android:id="@+id/user_recylerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
     </androidx.recyclerview.widget.RecyclerView>
+
+
 </RelativeLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorAboutUsBackGround">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="About Us"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:textSize="24sp"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/colorPrimaryBlack"/>
+    <TextView
+        android:id="@+id/about_us"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="24dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:textSize="16sp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/colorSecondarylinearLaout"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="24dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:textSize="14sp"
+        android:text="A-140 Lav Kush Nagar Sector-22 Indira Nagar"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/colorSecondarylinearLaout"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="24dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:textSize="14sp"
+        android:text="Lucknow-226016"
+        android:layout_marginTop="4dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/colorSecondarylinearLaout"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="24dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:textSize="14sp"
+        android:text="Mob- 8840665201"
+        android:layout_marginTop="4dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/colorSecondarylinearLaout"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="24dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:textSize="14sp"
+        android:text="Email Id-jeeven.jyoti.systems@gmail.com"
+        android:layout_marginTop="4dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/colorSecondarylinearLaout"/>
+
+</LinearLayout>
