@@ -7,7 +7,7 @@
     tools:context=".MainActivity"
     android:background="@color/colorPrimaryBlack"
     android:orientation="vertical"
-    android:paddingTop="100dp">
+    android:paddingTop="50dp">
     <TextView
         android:id="@+id/about_id"
         android:layout_width="45dp"
@@ -17,6 +17,7 @@
         android:layout_marginBottom="24dp"
         android:text="A"
         android:textSize="16sp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:fontFamily="@font/roboto_slab_bold"
         android:textColor="@color/colorForRecyclerviewText"
@@ -30,54 +31,55 @@
         android:src="@drawable/playstore_logo"/>
 
     <LinearLayout
+        android:id="@+id/sign_up_container"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:orientation="vertical"
         android:layout_marginTop="4dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
         android:background="@drawable/signup_shape"
-        android:layout_gravity="center">
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
         <Button
             android:id="@+id/user_reg_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="User Registration"
-            android:layout_marginTop="100dp"
-            android:fontFamily="@font/roboto_slab_bold"
-            android:textSize="16dp"
-            android:textColor="@color/colorAccent"
             android:layout_marginLeft="35dp"
+            android:layout_marginTop="100dp"
             android:layout_marginRight="35dp"
             android:background="@drawable/round_button1"
-            android:gravity="center"/>
+            android:fontFamily="@font/roboto_slab_bold"
+            android:gravity="center"
+            android:text="User Registration"
+            android:textColor="@color/colorAccent"
+            android:textSize="16dp" />
+
         <Button
             android:id="@+id/volunteer_reg_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Volunteer Resgistration"
             android:layout_marginLeft="35dp"
-            android:fontFamily="@font/roboto_slab_bold"
-            android:textSize="16dp"
-            android:textColor="@color/colorAccent"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="35dp"
             android:background="@drawable/round_button2"
-            android:layout_marginTop="10dp"
-            android:gravity="center"/>
+            android:fontFamily="@font/roboto_slab_bold"
+            android:gravity="center"
+            android:text="Volunteer Resgistration"
+            android:textColor="@color/colorAccent"
+            android:textSize="16dp" />
+
         <Button
             android:id="@+id/admin_reg_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Admin Registration"
-            android:textColor="@color/colorAccent"
             android:layout_marginLeft="35dp"
-            android:fontFamily="@font/roboto_slab_bold"
-            android:textSize="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="35dp"
             android:background="@drawable/round_button3"
-            android:layout_marginTop="10dp"
-            android:gravity="center"/>
+            android:fontFamily="@font/roboto_slab_bold"
+            android:gravity="center"
+            android:text="Admin Registration"
+            android:textColor="@color/colorAccent"
+            android:textSize="16dp" />
     </LinearLayout>
-
-
 </LinearLayout>

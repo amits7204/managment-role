@@ -33,6 +33,10 @@ public class CustomAdapter extends ArrayAdapter<CustomItems> {
         return customView(position, convertView, parent);
     }
 
+    public String add(String aString){
+        return aString;
+    }
+
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         return customView(position, convertView, parent);

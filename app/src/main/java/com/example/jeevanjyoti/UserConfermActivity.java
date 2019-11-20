@@ -75,7 +75,7 @@ public class UserConfermActivity extends AppCompatActivity {
 
         mOccupationString = lIntent.getStringExtra("occupation");
 
-        mOccupationString = lIntent.getStringExtra("occupationDescription");
+        mOccupationDisc = lIntent.getStringExtra("occupationDescription");
 
         mFlatString = lIntent.getStringExtra("flat");
 
@@ -105,7 +105,7 @@ public class UserConfermActivity extends AppCompatActivity {
         mQualification.setText(mQualificationString);
         mEducationStatus.setText(mEducationStatusString);
         mOccupation.setText(mOccupationString);
-        mOccupationDiscription.setText(mOccupationString);
+        mOccupationDiscription.setText(mOccupationDisc);
         mFlatRoom.setText(mFlatString);
         mBuilding.setText(mBuildingString);
         mRoadStreet.setText(mRoadStreetString);
@@ -142,7 +142,7 @@ public class UserConfermActivity extends AppCompatActivity {
                 mQualificationString,
                 mEducationStatusString,
                 mOccupationString,
-                mOccupationString,
+                mOccupationDisc,
                 mFlatString,
                 mBuildingString,
                 mRoadStreetString,

@@ -7,11 +7,14 @@
     android:clickable="true"
     android:fitsSystemWindows="true"
     android:focusable="true">
-    <Toolbar
+    <TextView
         android:id="@+id/user_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:title="User Details" />
+        android:layout_height="50dp"
+        android:text="User Details"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:textSize="16sp"
+        android:layout_margin="20dp"/>
     <ProgressBar
         android:id="@+id/user_progressbar"
         android:layout_width="wrap_content"
@@ -26,6 +29,7 @@
         android:layout_alignRight="@+id/user_toolbar"
         android:layout_marginRight="24dp"
         android:layout_marginTop="18dp"
+        android:clickable="true"
         android:src="@drawable/ic_download_black"/>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_below="@+id/user_toolbar"

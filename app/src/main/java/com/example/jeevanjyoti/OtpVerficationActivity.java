@@ -59,8 +59,9 @@ public class OtpVerficationActivity extends AppCompatActivity {
         lOtpCall.enqueue(new Callback<AdminOtpVerify>() {
             @Override
             public void onResponse(Call<AdminOtpVerify> call, Response<AdminOtpVerify> response) {
-                Log.w("OTPVERIFY","RESPONSE OTP: "+response);
+
                 if (response.isSuccessful()){
+                    Log.w("OTPVERIFY","RESPONSE OTP: "+response);
                     editor.putString("vmobile", lMobileString);
                     editor.apply();
                     Intent lIntent = new Intent(OtpVerficationActivity.this,VolunteerDashBoard.class);

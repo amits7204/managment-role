@@ -101,7 +101,6 @@ public class RegisterActivity extends AppCompatActivity
 
         // create Adapter for spinner
         CustomAdapter customAdapter = new CustomAdapter(this, mGenderCustomList);
-
         if (mGenderCustomList != null) {
             mGenderSpinner.setAdapter(customAdapter);
             mGenderSpinner.setOnItemSelectedListener(this);
@@ -113,6 +112,7 @@ public class RegisterActivity extends AppCompatActivity
         mEducationStatusList.add(new CustomItems("Education Status"));
         mEducationStatusList.add(new CustomItems("Pursue"));
         mEducationStatusList.add(new CustomItems("Completed"));
+        mEducationStatusList.add(new CustomItems("Dropped"));
 
 
         // create Adapter for spinner
@@ -178,11 +178,24 @@ public class RegisterActivity extends AppCompatActivity
     public void getEducation(){
         mEducationSpinner = findViewById(R.id.eucation_spinner);
 
-        mEducationCustomList.add(new CustomItems("Qualification"));
-        mEducationCustomList.add(new CustomItems("SSC"));
-        mEducationCustomList.add(new CustomItems("HSC"));
-        mEducationCustomList.add(new CustomItems("Graduation"));
+        mEducationCustomList.add(new CustomItems("Select Qualification"));
+        mEducationCustomList.add(new CustomItems("Illiterate"));
+        mEducationCustomList.add(new CustomItems("PG-UKG"));
+        mEducationCustomList.add(new CustomItems("1st"));
+        mEducationCustomList.add(new CustomItems("2nd"));
+        mEducationCustomList.add(new CustomItems("3rd"));
+        mEducationCustomList.add(new CustomItems("4th"));
+        mEducationCustomList.add(new CustomItems("5th"));
+        mEducationCustomList.add(new CustomItems("6th"));
+        mEducationCustomList.add(new CustomItems("7th"));
+        mEducationCustomList.add(new CustomItems("8th"));
+        mEducationCustomList.add(new CustomItems("9th"));
+        mEducationCustomList.add(new CustomItems("10th"));
+        mEducationCustomList.add(new CustomItems("11th"));
+        mEducationCustomList.add(new CustomItems("12th"));
+        mEducationCustomList.add(new CustomItems("Graduate"));
         mEducationCustomList.add(new CustomItems("Post Graduation"));
+        mEducationCustomList.add(new CustomItems("Others"));
 
         // create Adapter for spinner
         CustomAdapter customAdapter = new CustomAdapter(this, mEducationCustomList);
@@ -263,22 +276,29 @@ public class RegisterActivity extends AppCompatActivity
 
         switch (adapterView.getId()){
             case R.id.marital_spinner:
-                mMaritalStatus = mMaritalcustomList.get(aPosition).getSpinnerText();
+                if (aPosition!=0)
+                    mMaritalStatus = mMaritalcustomList.get(aPosition).getSpinnerText();
                 break;
             case R.id.eucation_spinner:
-                mEducation = mEducationCustomList.get(aPosition).getSpinnerText();
+                if (aPosition!=0)
+                    mEducation = mEducationCustomList.get(aPosition).getSpinnerText();
                 break;
             case R.id.occupation_spinner:
-                mOccupation = mOccupationCustomList.get(aPosition).getSpinnerText();
+                if (aPosition!=0)
+                    mOccupation = mOccupationCustomList.get(aPosition).getSpinnerText();
                 break;
             case R.id.gender_spinner:
-                mGender = mGenderCustomList.get(aPosition).getSpinnerText();
+                if (aPosition!=0)
+                    mGender = mGenderCustomList.get(aPosition).getSpinnerText();
                 break;
             case R.id.education_status_spinner:
-                mEducationStatus = mEducationStatusList.get(aPosition).getSpinnerText();
+                if (aPosition!=0)
+                    mEducationStatus = mEducationStatusList.get(aPosition).getSpinnerText();
                 break;
             case R.id.state_spinner:
-                mStateString = mStateCustomList.get(aPosition).getSpinnerText();
+                if (aPosition!=0)
+                    mStateString = mStateCustomList.get(aPosition).getSpinnerText();
+                break;
             case R.id.district_spinner:
                 Log.w(TAG,"SELECTED ITEM: "+mStateCustomList.get(aPosition).getSpinnerText());
                 String sp1= String.valueOf(mStateCustomList.get(aPosition).getSpinnerText());
@@ -286,7 +306,6 @@ public class RegisterActivity extends AppCompatActivity
                 switch(sp1){
                     case "Andhra Pradesh":
                         List<String> lAplist = new ArrayList<String>();
-                        lAplist.add("Select District");
                         lAplist.add("Anantapur");
                         lAplist.add("Chittoor");
                         lAplist.add("East Godavari");
@@ -303,12 +322,14 @@ public class RegisterActivity extends AppCompatActivity
                         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                                 android.R.layout.simple_spinner_item, lAplist);
                         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        dataAdapter.add("Select District");
                         dataAdapter.notifyDataSetChanged();
                         mDistrictSpinner.setAdapter(dataAdapter);
                         mDistrictString = adapterView.getItemAtPosition(aPosition).toString();
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                if (i!=0)
                                 mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
@@ -356,6 +377,7 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                if (i!=0)
                                 mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
@@ -411,6 +433,7 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                if (i!=0)
                                 mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
@@ -470,7 +493,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -519,7 +543,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                 mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -542,7 +567,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -588,7 +614,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -631,7 +658,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                     mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -664,7 +692,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -705,7 +734,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -728,7 +758,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -773,7 +804,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -824,7 +856,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                 mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -859,7 +892,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -932,7 +966,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -969,7 +1004,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -1001,7 +1037,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                 mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -1030,7 +1067,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -1063,7 +1101,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -1113,7 +1152,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -1156,7 +1196,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -1210,7 +1251,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -1235,7 +1277,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -1293,7 +1336,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -1347,7 +1391,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -1465,7 +1510,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 
@@ -1509,7 +1555,8 @@ public class RegisterActivity extends AppCompatActivity
                         mDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                mDistrictString = mDistrictSpinner.getSelectedItem().toString();
+                                if (i!=0)
+                                    mDistrictString = mDistrictSpinner.getSelectedItem().toString();
                                 Log.w(TAG,"District text: "+mDistrictString);
                             }
 

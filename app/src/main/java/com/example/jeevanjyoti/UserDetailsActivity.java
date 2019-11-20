@@ -60,10 +60,10 @@ public class UserDetailsActivity extends AppCompatActivity {
         mUserProgressBar.setVisibility(View.VISIBLE);
         mDownloadImageView = findViewById(R.id.download_image);
         getUserData();
-
-        if (!isStoragePermissionGranted()){
-            downLoadFile();
-        }
+        downLoadFile();
+//        if (!isStoragePermissionGranted()){
+//            downLoadFile();
+//        }
     }
 
     public void getUserData(){
@@ -104,7 +104,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                 long referenceId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
 
 
-                Log.e("IN", "" + referenceId);
+                Log.e("IN", "Reference id" + referenceId);
 
                 list.remove(referenceId);
 
@@ -141,20 +141,20 @@ public class UserDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 list.clear();
-
+                Toast.makeText(getApplicationContext(),"Downloading start",Toast.LENGTH_SHORT).show();
                 DownloadManager.Request request = new DownloadManager.Request(Download_Uri);
                 request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
                 request.setAllowedOverRoaming(false);
-                request.setTitle("GadgetSaint Downloading " + "Sample" + ".xlsx");
-                request.setDescription("Downloading " + "Sample" + ".xlsx");
+                request.setTitle("Jeevan Jyoti Downloading " + "user" + ".xlsx");
+                request.setDescription("Downloading " + "JeevanJyoti User" + ".xlsx");
                 request.setVisibleInDownloadsUi(true);
-                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/GadgetSaint/"  + "/" + "Sample" + ".xlsx");
+                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/Jeevan Jyoti/"  + "/" + "user" + ".xlsx");
 
 
                 refid = downloadManager.enqueue(request);
 
 
-                Log.e("OUT", "" + refid);
+                Log.e("OUT", "REFID" + refid);
 
                 list.add(refid);
             }
@@ -163,21 +163,21 @@ public class UserDetailsActivity extends AppCompatActivity {
 
 
     }
-    public  boolean isStoragePermissionGranted() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
-                return true;
-            } else {
-
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                return false;
-            }
-        }
-        else { //permission is automatically granted on sdk<23 upon installation
-            return true;
-        }
-    }
+//    public  boolean isStoragePermissionGranted() {
+//        if (Build.VERSION.SDK_INT >= 23) {
+//            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                    == PackageManager.PERMISSION_GRANTED) {
+//                return true;
+//            } else {
+//
+//                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+//                return false;
+//            }
+//        }
+//        else { //permission is automatically granted on sdk<23 upon installation
+//            return true;
+//        }
+//    }
 
     @Override
     protected void onDestroy() {

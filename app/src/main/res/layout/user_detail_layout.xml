@@ -25,6 +25,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="14dp"
+            android:layout_marginBottom="6dp"
             android:fontFamily="@font/roboto_slab_bold"
             android:layout_weight="1"/>
 

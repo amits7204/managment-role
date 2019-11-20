@@ -1,10 +1,14 @@
 package com.example.jeevanjyoti;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +16,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -28,11 +33,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.jeevanjyoti.retrofit.RetrofitClient;
 import com.example.jeevanjyoti.retrofit.UserRegisterApi;
 import com.example.jeevanjyoti.retrofit.Volunteer;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -48,6 +56,7 @@ public class VolunteerActivity extends AppCompatActivity {
     private EditText mNameEditText, mMobileNumberEditText, mFullAddressEditText;
     private Button mButton;
     private Intent mGalleryIntent, mCropIntent;
+    private static final int REQUEST_PHOTO_FROM_GOOGLE_PHOTOS = 100;
     private final static int PERMISSIONS_REQUEST_CODE = 1;
     private Uri mUri;
     private File mFile;
@@ -86,6 +95,7 @@ public class VolunteerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),"Slect Gallery", Toast.LENGTH_SHORT).show();
                 getImageFromeGallery();
+//                launchGooglePhotosPicker(VolunteerActivity.this);
             }
         });
         getGender();
@@ -126,10 +136,11 @@ public class VolunteerActivity extends AppCompatActivity {
     }
 
     public void getImageFromeGallery(){
-        mGalleryIntent = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-        startActivityForResult(Intent.createChooser(mGalleryIntent, "Select Image From Gallery"), 2);
+        mGalleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        mGalleryIntent.setType("image/*");
+        String[] mimeTypes = {"image/jpeg", "image/png"};
+        mGalleryIntent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
+        startActivityForResult(mGalleryIntent, 2);
     }
 
     @Override
@@ -137,11 +148,11 @@ public class VolunteerActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         try {
             if (requestCode == 0 && resultCode == RESULT_OK) {
-
+                Log.w(TAG,"RequestCode: "+requestCode);
                 getCropImage();
 
-            } else if (requestCode == 2) {
-
+            }else if (requestCode == 2) {
+                Log.w(TAG,"RequestCode: "+requestCode);
                 if (data != null) {
 
                     mUri = data.getData();
@@ -150,7 +161,7 @@ public class VolunteerActivity extends AppCompatActivity {
 
                 }
             } else if (requestCode == 1) {
-
+                Log.w(TAG,"RequestCode: "+requestCode);
                 if (data != null) {
 
                     Bundle bundle = data.getExtras();
@@ -159,16 +170,19 @@ public class VolunteerActivity extends AppCompatActivity {
                     if (bundle != null) {
                         bitmap = bundle.getParcelable("data");
                     }
-                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-                    Cursor cursor = getContentResolver().query(mUri
-                            , filePathColumn, null, null, null);
-                    assert cursor != null;
+                    Cursor cursor = getContentResolver().query(mUri, null, null, null, null);
                     cursor.moveToFirst();
+                    String document_id = cursor.getString(0);
+                    document_id = document_id.substring(document_id.lastIndexOf(":")+1);
+                    cursor.close();
 
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    mMediaPath = cursor.getString(columnIndex);
-                    Log.w(TAG,"MEDIA PATH string: "+ mMediaPath);
+                    cursor = getContentResolver().query(
+                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                            null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
+                    cursor.moveToFirst();
+                    mMediaPath = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                    cursor.close();
+
                     // Set the Image in ImageView for Previewing the Media
                     mImageView.setImageBitmap(BitmapFactory.decodeFile(mMediaPath));
                     cursor.close();
@@ -177,8 +191,16 @@ public class VolunteerActivity extends AppCompatActivity {
                 }
             }
         }catch (Exception e){
+            Log.w(TAG, "Failed Exception :"+e.getMessage());
             Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
         }
+    }
+    public static boolean isExternalStorageDocument(Uri uri) {
+        return "com.android.externalstorage.documents".equals(uri.getAuthority());
+    }
+
+    public static boolean isDownloadsDocument(Uri uri) {
+        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
     }
 
     public void getCropImage() {
@@ -186,7 +208,7 @@ public class VolunteerActivity extends AppCompatActivity {
         // Image Crop Code
         try {
             mCropIntent = new Intent("com.android.camera.action.CROP");
-
+            Log.w(TAG,"URI: "+mUri);
             mCropIntent.setDataAndType(mUri, "image/*");
 
             mCropIntent.putExtra("crop", "true");
@@ -200,48 +222,51 @@ public class VolunteerActivity extends AppCompatActivity {
             startActivityForResult(mCropIntent, 1);
 
         } catch (ActivityNotFoundException e) {
-
+            String errorMessage = "Whoops - your device doesn't support the crop action!";
+            Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 
     public void getRespose(){
         mProgressDialog.show();
         final String lNameString = mNameEditText.getText().toString();
+        final String lMobileNumberString = mMobileNumberEditText.getText().toString();
+        final String lFullAddressString = mFullAddressEditText.getText().toString();
         if(lNameString.isEmpty()){
             mNameEditText.setError("Please fill Full name");
             mNameEditText.requestFocus();
         }
-        final String lMobileNumberString = mMobileNumberEditText.getText().toString();
-        if (lMobileNumberString.isEmpty()){
+        else if (lMobileNumberString.isEmpty()){
             mMobileNumberEditText.setError("Please Fill the mobile number");
             mMobileNumberEditText.requestFocus();
         }
-        final String lFullAddressString = mFullAddressEditText.getText().toString();
-        if (lFullAddressString.isEmpty()){
+        else if (lFullAddressString.isEmpty()){
             mFullAddressEditText.setError("Please fill the Full Address");
             mFullAddressEditText.requestFocus();
-        }
-            Log.w(TAG,"Onclick Button");
+        }else if (mGender.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Please choose Your gender", Toast.LENGTH_SHORT).show();
+        } else {
+            Log.w(TAG, "Onclick Button");
             mVolunteer.setFullName(lNameString);
             mVolunteer.setMobileNumber(lMobileNumberString);
             mVolunteer.setAddress(lFullAddressString);
             // Map is used to multipart the file using okhttp3.RequestBody
-            Log.w(TAG,"MEDIA PATH: "+ mMediaPath);
+            Log.w(TAG, "MEDIA PATH: " + mMediaPath);
             try {
                 if (mMediaPath != null) {
                     mFile = new File(mMediaPath);
                 } else {
                     Toast.makeText(getApplicationContext(), "Plese choose Profile pic", Toast.LENGTH_SHORT).show();
                 }
-            }catch (Exception ex){
-                Toast.makeText(getApplicationContext(),mMediaPath,Toast.LENGTH_SHORT).show();
+            } catch (Exception ex) {
+                Toast.makeText(getApplicationContext(), mMediaPath, Toast.LENGTH_SHORT).show();
             }
 
             String root = Environment.getExternalStorageState(mFile);
-        Log.w(TAG,"Root PATH: "+ mFile);
+            Log.w(TAG, "Root PATH: " + mFile);
 //            file.mkdir();
             // Parsing any Media type file
-            Volunteer lVolunteer = new Volunteer();
             RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), mFile);
             final MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData(
                     "image", String.valueOf(mFile), requestBody);
@@ -252,9 +277,7 @@ public class VolunteerActivity extends AppCompatActivity {
                     , lMobileNumberString);
             RequestBody lFUllAddressRequest = RequestBody.create(MediaType.parse("text/plain")
                     , lFullAddressString);
-            if (mGender.isEmpty()){
-                Toast.makeText(getApplicationContext(),"Please choose Your gender",Toast.LENGTH_SHORT).show();
-            }
+
             RequestBody lGender = RequestBody.create(MediaType.parse("text/plain"), mGender);
             UserRegisterApi lUserRegisterApi = RetrofitClient.postUserdata();
             Call<Volunteer> lCallUserResponse = lUserRegisterApi
@@ -263,15 +286,15 @@ public class VolunteerActivity extends AppCompatActivity {
             lCallUserResponse.enqueue(new Callback<Volunteer>() {
                 @Override
                 public void onResponse(Call<Volunteer> call, Response<Volunteer> response) {
-                    Log.w("RegisterActivity", "Response: " + response.body()+ " File Path: "+ fileToUpload.toString());
-                    if (response.isSuccessful()){
+                    Log.w("RegisterActivity", "Response: " + response.body() + " File Path: " + fileToUpload.toString());
+                    if (response.isSuccessful()) {
                         Intent lIntent = new Intent(VolunteerActivity.this, OtpVerficationActivity.class);
                         lIntent.putExtra("vmobile", lMobileNumberString);
                         startActivity(lIntent);
                         mProgressDialog.dismiss();
-                    }else{
+                    } else {
 //                        Log.w(TAG,"500 Internal Error: "+response.body());
-                        Toast.makeText(getApplicationContext(),"Something is wrong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Something is wrong", Toast.LENGTH_SHORT).show();
                         mProgressDialog.dismiss();
                     }
 
@@ -283,6 +306,7 @@ public class VolunteerActivity extends AppCompatActivity {
                     mProgressDialog.dismiss();
                 }
             });
+        }
     }
 
     public void registerVolunteer(){
