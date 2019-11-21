@@ -136,7 +136,8 @@ public class VolunteerActivity extends AppCompatActivity {
     }
 
     public void getImageFromeGallery(){
-        mGalleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        mGalleryIntent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         mGalleryIntent.setType("image/*");
         String[] mimeTypes = {"image/jpeg", "image/png"};
         mGalleryIntent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
@@ -163,7 +164,7 @@ public class VolunteerActivity extends AppCompatActivity {
             } else if (requestCode == 1) {
                 Log.w(TAG,"RequestCode: "+requestCode);
                 if (data != null) {
-
+//                    getCropImage();
                     Bundle bundle = data.getExtras();
 
                     Bitmap bitmap = null;
@@ -207,6 +208,7 @@ public class VolunteerActivity extends AppCompatActivity {
 
         // Image Crop Code
         try {
+            Toast.makeText(this, "Image Crop Start", Toast.LENGTH_SHORT).show();
             mCropIntent = new Intent("com.android.camera.action.CROP");
             Log.w(TAG,"URI: "+mUri);
             mCropIntent.setDataAndType(mUri, "image/*");
@@ -220,11 +222,10 @@ public class VolunteerActivity extends AppCompatActivity {
             mCropIntent.putExtra("return-data", true);
 
             startActivityForResult(mCropIntent, 1);
-
+            Toast.makeText(this, "Image Crop End", Toast.LENGTH_SHORT).show();
         } catch (ActivityNotFoundException e) {
-            String errorMessage = "Whoops - your device doesn't support the crop action!";
-            Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
-            toast.show();
+//            String errorMessage = "Whoops - your device doesn't support the crop action!";
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
