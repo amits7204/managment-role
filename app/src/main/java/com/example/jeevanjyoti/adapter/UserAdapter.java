@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -39,6 +42,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserAdapterVie
 
     private Context mContext;
     private UserRoot mUserRoot;
+    private List<String> mStringList;
     public UserAdapter(Context aContext, UserRoot aUserRoot){
         mContext = aContext;
         mUserRoot = aUserRoot;
@@ -52,8 +56,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserAdapterVie
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UserAdapter.UserAdapterViewHolder aVieHolder, int aPosition) {
+    public void onBindViewHolder(@NonNull UserAdapter.UserAdapterViewHolder aVieHolder, final int aPosition) {
         aVieHolder.mFullName.setText(mUserRoot.getData().get(aPosition).getName());
+        aVieHolder.mUniqueId.setText(mUserRoot.getData().get(aPosition).getUnique_id());
         aVieHolder.mFatherName.setText(mUserRoot.getData().get(aPosition).getFather_husband_name());
         aVieHolder.mMotherName.setText(mUserRoot.getData().get(aPosition).getMother_name());
         aVieHolder.mMobileNumber.setText(mUserRoot.getData().get(aPosition).getMobile());
@@ -62,16 +67,23 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserAdapterVie
         aVieHolder.mMaritalStatus.setText(mUserRoot.getData().get(aPosition).getMarital_status());
         aVieHolder.mQualificationStatus.setText(mUserRoot.getData().get(aPosition).getEducation());
         aVieHolder.mEducationStatus.setText(mUserRoot.getData().get(aPosition).getEducation_status());
+        aVieHolder.mEdudisc.setText(mUserRoot.getData().get(aPosition).getEducation_description());
         aVieHolder.mOccupation.setText(mUserRoot.getData().get(aPosition).getOccupation());
         aVieHolder.mOccupationDescription.setText(mUserRoot.getData().get(aPosition).getOccupation_description());
-        aVieHolder.mFlat.setText(mUserRoot.getData().get(aPosition).getFlat_room_block_no());
-        aVieHolder.mBuilding.setText(mUserRoot.getData().get(aPosition).getPremises_building_villa());
-        Log.w("UserAdapter","Check RoadLane: "+mUserRoot.getData().get(aPosition).getRoad_street_lane());
-        aVieHolder.mRoadStreet.setText(mUserRoot.getData().get(aPosition).getRoad_street_lane());
-        aVieHolder.mArea.setText(mUserRoot.getData().get(aPosition).getArea_locality_taluk());
-        aVieHolder.mPinCode.setText(mUserRoot.getData().get(aPosition).getPin_code());
-        aVieHolder.mState.setText(mUserRoot.getData().get(aPosition).getState());
-        aVieHolder.mDistrict.setText(mUserRoot.getData().get(aPosition).getDistrict());
+        aVieHolder.mArea.setText(mUserRoot.getData().get(aPosition).getFlat_room_block_no()+" "+
+                mUserRoot.getData().get(aPosition).getPremises_building_villa()+" "+
+                mUserRoot.getData().get(aPosition).getRoad_street_lane()+" "+
+                mUserRoot.getData().get(aPosition).getArea_locality_taluk()+" "+
+                mUserRoot.getData().get(aPosition).getPin_code()+" "+
+                mUserRoot.getData().get(aPosition).getState()+" "+
+                mUserRoot.getData().get(aPosition).getDistrict());
+
+        aVieHolder.mLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.w("UserAdapter", "OnClick: "+mUserRoot.getData().get(aPosition));
+            }
+        });
     }
 
     @Override
@@ -82,9 +94,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserAdapterVie
     public class UserAdapterViewHolder extends RecyclerView.ViewHolder {
         public TextView mFullName, mFatherName, mMotherName, mMobileNumber, mGender, mDOB,
         mMaritalStatus, mQualificationStatus, mEducationStatus, mOccupation, mOccupationDescription,
-        mFlat, mBuilding, mArea, mPinCode, mState, mDistrict, mRoadStreet;
-        ImageView mDownloadImage;
-        public UserAdapterViewHolder(@NonNull View itemView) {
+        mArea, mUniqueId, mEdudisc;
+        LinearLayout mLinearLayout;
+        UserAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             mFullName = itemView.findViewById(R.id.full_name);
             mFatherName = itemView.findViewById(R.id.father_name);
@@ -97,13 +109,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserAdapterVie
             mEducationStatus = itemView.findViewById(R.id.education_status_text_view);
             mOccupation = itemView.findViewById(R.id.occupation_text_view);
             mOccupationDescription = itemView.findViewById(R.id.occupation_description_text_view);
-            mFlat = itemView.findViewById(R.id.flat_room_text_view);
-            mBuilding = itemView.findViewById(R.id.building_villege_text_view);
-            mRoadStreet = itemView.findViewById(R.id.road_lane_text_view);
             mArea = itemView.findViewById(R.id.area_locality_text_view);
-            mPinCode = itemView.findViewById(R.id.pin_code_text_view);
-            mState = itemView.findViewById(R.id.state_text_view);
-            mDistrict = itemView.findViewById(R.id.district_text_view);
+            mUniqueId = itemView.findViewById(R.id.d_unique_id);
+            mEdudisc = itemView.findViewById(R.id.education_disc_text_view);
+            mLinearLayout = itemView.findViewById(R.id.linear_layout_position);
+
 
 
 

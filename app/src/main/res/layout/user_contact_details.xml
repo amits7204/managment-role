@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryBlack">
+
+    <EditText
+        android:id="@+id/flat_room_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginRight="24dp"
+        android:hint="Flat/Room/Block no"
+        android:inputType="textMultiLine"
+        android:lines="3"
+        android:paddingLeft="16dp"
+        android:background="@drawable/secondary_primary_box"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorSecondaryHint"  />
+
+    <EditText
+        android:id="@+id/building_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="24dp"
+        android:hint="Bulding/villege"
+        android:inputType="textMultiLine"
+        android:lines="3"
+        android:paddingLeft="16dp"
+        android:background="@drawable/secondary_primary_box"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorSecondaryHint"  />
+    <EditText
+        android:id="@+id/road_lane"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="24dp"
+        android:hint="Road/Street/Lane"
+        android:inputType="textMultiLine"
+        android:lines="3"
+        android:paddingLeft="16dp"
+        android:background="@drawable/secondary_primary_box"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorSecondaryHint"  />
+
+    <EditText
+        android:id="@+id/area_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="24dp"
+        android:hint="Area/locality"
+        android:inputType="textMultiLine"
+        android:lines="3"
+        android:paddingLeft="16dp"
+        android:background="@drawable/secondary_primary_box"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorSecondaryHint"  />
+
+    <EditText
+        android:id="@+id/pin_code_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="24dp"
+        android:hint="Pin Code"
+        android:inputType="number"
+        android:maxLength="6"
+        android:lines="3"
+        android:paddingLeft="16dp"
+        android:background="@drawable/secondary_primary_box"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorSecondaryHint"  />
+
+    <Spinner
+        android:id="@+id/state_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/spinner_shape" />
+
+    <Spinner
+        android:id="@+id/c_district_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/spinner_shape" />
+
+
+</LinearLayout>

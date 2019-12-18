@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         lUserRegButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent lIntent = new Intent(MainActivity.this, RegisterActivity.class);
+                Intent lIntent = new Intent(MainActivity.this, YesOrNoActivity.class);
                 startActivity(lIntent);
             }
         });

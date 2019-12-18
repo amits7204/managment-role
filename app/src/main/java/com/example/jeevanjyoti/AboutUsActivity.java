@@ -12,10 +12,18 @@ public class AboutUsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about_us_layout);
         TextView lAboutUs = findViewById(R.id.about_us);
-        lAboutUs.setText("Jeeven Jyoti, A Valmiki Support Systems is designed to collect the" +
-                " information about every household and population of our community across the " +
-                "India so that we can connect with each other. Our vision is to built the strong " +
-                "systems and filter out the problems of our community. Our mission to connect the " +
-                "community with the systems.");
+        TextView lOurTeam = findViewById(R.id.our_team);
+        TextView lOurHistory = findViewById(R.id.our_history);
+        lAboutUs.setText("We focus on making the maximum positive effort for our community. " +
+                "Our members and volunteers provide the momentum that helps us affect change. " +
+                "Using data driven models, we provide solutions that make a long-lasting difference..");
+
+        lOurTeam.setText("Our amazing team of regulars and part-time volunteers are committed to helping others. " +
+                "We take our convictions and turn them into action. " +
+                "Think you would be a good fit? Get in touch for more information!");
+        lOurHistory.setText("Seeing a need for energetic, nonprofit work in this area, " +
+                "we formed our organization to provide sensible solutions." +
+                " We've consistently grown since then, all thanks to the helping hands of " +
+                "this amazing community!");
     }
 }

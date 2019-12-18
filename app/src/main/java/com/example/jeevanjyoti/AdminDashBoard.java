@@ -27,7 +27,7 @@ public class AdminDashBoard extends AppCompatActivity {
         mUserRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent lIntent = new Intent(AdminDashBoard.this, RegisterActivity.class);
+                Intent lIntent = new Intent(AdminDashBoard.this, YesOrNoActivity.class);
                 startActivity(lIntent);
             }
         });

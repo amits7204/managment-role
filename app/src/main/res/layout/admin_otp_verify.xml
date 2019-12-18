@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryAdmin">
+    android:background="@color/colorPrimaryBlack">
 
     <ProgressBar
         android:id="@+id/progressBar_otp"
@@ -22,7 +22,7 @@
         android:id="@+id/logo_imageview"
         android:layout_width="100dp"
         android:layout_height="150dp"
-        android:src="@drawable/admin"/>
+        android:src="@drawable/volunteer2"/>
     <EditText
         android:id="@+id/otp_editText"
         android:layout_width="match_parent"

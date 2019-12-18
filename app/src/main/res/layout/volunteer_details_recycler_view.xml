@@ -2,8 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/colorAccent"
+    android:background="@color/colormarital"
     android:clickable="true"
     android:fitsSystemWindows="true"
     android:focusable="true"
@@ -13,17 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:title="Volunteer Details"
-        android:titleTextColor="@color/colorForRecyclerviewcardII"
+        android:titleTextColor="@color/colorPrimaryBlack"
         android:titleMarginStart="100dp"/>
-    <ProgressBar
-        android:id="@+id/volunteer_progressbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/volunteer_animation_view"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerInParent="true"
-        android:visibility="gone"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_fileName="data.json"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"/>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_below="@+id/volunteer_toolbar"
         android:id="@+id/volunteer_recylerview"

@@ -1,5 +1,6 @@
 package com.example.jeevanjyoti.retrofit;
 
+import com.example.jeevanjyoti.otpPojo.OtpRoot;
 import com.example.jeevanjyoti.registerencapsulation.UserRegister;
 import com.example.jeevanjyoti.userPojo.UserRoot;
 import com.example.jeevanjyoti.volunteerPojo.VolunteerRoot;
@@ -21,6 +22,7 @@ public interface UserRegisterApi {
     @POST("/registration_form/")
     @FormUrlEncoded
     Call<UserRegister> sendUserData(@Field("name") String name,
+                                    @Field("unique_id") String uniqueId,
                                     @Field("father_husband_name") String fatherName,
                                     @Field("mother_name") String motherName,
                                     @Field("mobile") String mobile,
@@ -29,6 +31,7 @@ public interface UserRegisterApi {
                                     @Field("marital_status") String marital,
                                     @Field("education") String education,
                                     @Field("education_status") String education_status,
+                                    @Field("education_description") String eduDisc,
                                     @Field("occupation") String occupation,
                                     @Field("occupation_description") String occupation_description,
                                     @Field("flat_room_block_no") String flat_room_block_no,
@@ -53,11 +56,23 @@ public interface UserRegisterApi {
                                       @Part("name") RequestBody name,
                                       @Part("gender") RequestBody gender,
                                       @Part("mobile") RequestBody mobile,
-                                      @Part("address") RequestBody address);
+                                      @Part("fathername") RequestBody fathername,
+                                      @Part("dateofbirth") RequestBody dateofbirth,
+                                      @Part("flat_room_block_no") RequestBody flat_room_block_no,
+                                      @Part("premises_building_villa") RequestBody premises_building_villa,
+                                      @Part("road_street_lane") RequestBody road_street_lane,
+                                      @Part("area_locality_taluk") RequestBody area_locality_taluk,
+                                      @Part("pin_code") RequestBody pin_code,
+                                      @Part("state") RequestBody state,
+                                      @Part("district") RequestBody district);
 
     @FormUrlEncoded
     @POST("/volunteer_registration/")
-    Call<AdminOtpVerify> verifyVolunteerOtp(@Field("otp") String otp);
+    Call<OtpRoot> verifyVolunteerOtp(@Field("otp") String otp);
+
+    @FormUrlEncoded
+    @POST("/registration_form/")
+    Call<OtpRoot> verifyUserOtp(@Field("otp") String otp);
 
 
 

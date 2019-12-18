@@ -15,7 +15,7 @@
 
         <shape  android:shape="rectangle">
 
-            <solid android:color="@color/colorPrimarylinearLaout" />
+            <solid android:color="@color/colormarital" />
             <corners android:radius="16dp" />
 
 

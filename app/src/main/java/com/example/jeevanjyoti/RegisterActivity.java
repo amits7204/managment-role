@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -41,13 +43,13 @@ public class RegisterActivity extends AppCompatActivity
     private Spinner mMaritalSpinner, mEducationSpinner, mOccupationSpinner, mStateSpinner,
             mDistrictSpinner, mGenderSpinner, mEducationStatusSpinner;
     private EditText mFullName, mFatherName, mMotherName, mMobileNumber, mOccupationEditText,
-            mFlatEditText, mBuildingEditText, mAreaEditText, mPinCodeEditText, mRoadStreet;
+            mFlatEditText, mBuildingEditText, mAreaEditText, mPinCodeEditText, mRoadStreet,
+            mUniqueid, mEducationDiscription;
     private EditText mDOBEditText;
+    private FrameLayout mUserPersonalDetailsFL, mEducationDetailsFL, mContactDetailsFL;
+    private ImageView mAddButtonOne, mAddButtonTwo, mAddButtonThree;
     Button mRegisterButton;
     ArrayList<CustomItems> mStateCustomList = new ArrayList<>();
-    ArrayList<CustomItems> mUpDistrictCustomList = new ArrayList<>();
-    ArrayList<CustomItems> mWbDistrictCustomList = new ArrayList<>();
-    ArrayList<CustomItems> mDefaultDistrictCustomList = new ArrayList<>();
     ArrayList<CustomItems> mGenderCustomList = new ArrayList<>();
     ArrayList<CustomItems> mMaritalcustomList = new ArrayList<>();
     ArrayList<CustomItems> mEducationCustomList = new ArrayList<>();
@@ -55,42 +57,86 @@ public class RegisterActivity extends AppCompatActivity
     ArrayList<CustomItems> mEducationStatusList = new ArrayList<>();
     public String mMaritalStatus, mEducation, mOccupation, mEducationStatus, mStateString
             , mDistrictString, mRoadLane;
-    private LinearLayout mMaleLinearLayout, mFemaleLinearLayout;
-    private UserRegister mUserRegister = new UserRegister();
+    String mFullNameString;
     private String mGender;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
         mDistrictSpinner = findViewById(R.id.district_spinner);
+        mEducationDiscription = findViewById(R.id.edu_desc_edit_text);
         mFullName = findViewById(R.id.full_name_edit_text);
+        mUniqueid = findViewById(R.id.unique_id_edit_text);
         mFatherName = findViewById(R.id.father_name_edit_Text);
         mMotherName = findViewById(R.id.mother_name_edit_Text);
         mMobileNumber = findViewById(R.id.mobile_number_edit_text);
         mOccupationEditText = findViewById(R.id.occupation_edit_text);
         mFlatEditText = findViewById(R.id.flat_room_edit_text);
         mBuildingEditText = findViewById(R.id.building_edit_text);
+        mAddButtonOne = findViewById(R.id.user_details_imageview);
+        mAddButtonTwo = findViewById(R.id.user_education_image);
+        mAddButtonThree = findViewById(R.id.user_contact_image);
         mAreaEditText = findViewById(R.id.area_edit_text);
         mPinCodeEditText = findViewById(R.id.pin_code_edit_text);
         mGenderSpinner = findViewById(R.id.gender_spinner);
         mDOBEditText = findViewById(R.id.dob_text_view);
         mRoadStreet = findViewById(R.id.road_lane);
+        mUserPersonalDetailsFL = findViewById(R.id.user_personal_framelayout);
+        mEducationDetailsFL = findViewById(R.id.user_education_framelayout);
+        mContactDetailsFL = findViewById(R.id.user_contact_frame_layout);
         mRegisterButton = findViewById(R.id.register_button);
-        mMaleLinearLayout = findViewById(R.id.male_linear_layout);
-        mFemaleLinearLayout = findViewById(R.id.female_linear_layout);
+        LinearLayout mMaleLinearLayout = findViewById(R.id.male_linear_layout);
+        LinearLayout mFemaleLinearLayout = findViewById(R.id.female_linear_layout);
         mEducationStatusSpinner = findViewById(R.id.education_status_spinner);
         getMariatalStatus();
         getEducation();
         getOccupationStatus();
-        getState();
-//        getUpDistrict(0);
-//        getWbDistrict();
-//        getDistrict();
         registerUser();
         getDob();
         getGender();
         getEducationStatus();
-//        Log.w(TAG,"Get Gender: "+getGender());
+        mAddButtonOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mUserPersonalDetailsFL.setVisibility(View.VISIBLE);
+                mAddButtonOne.setVisibility(View.GONE);
+            }
+        });
+
+        mAddButtonTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mEducationDetailsFL.setVisibility(View.VISIBLE);
+                mAddButtonTwo.setVisibility(View.GONE);
+                mAddButtonOne.setVisibility(View.VISIBLE);
+                mUserPersonalDetailsFL.setVisibility(View.GONE);
+            }
+        });
+
+        mAddButtonThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getState();
+                mContactDetailsFL.setVisibility(View.VISIBLE);
+                mAddButtonThree.setVisibility(View.GONE);
+                mAddButtonTwo.setVisibility(View.VISIBLE);
+                mEducationDetailsFL.setVisibility(View.GONE);
+            }
+        });
+
+        Intent lIntentYes = getIntent();
+        String lYesString;
+        lYesString = lIntentYes.getStringExtra("yes");
+        Log.w(TAG,"Yes Button: "+lYesString);
+        if (lYesString != null) {
+            mUniqueid.setVisibility(View.VISIBLE);
+            mFullNameString = mFullName.getText().toString();
+        }else{
+            String lString1 = mFullName.getText().toString();
+            String lString2 = "(Parent)";
+            mFullNameString = lString1.concat(lString2);
+        }
+
     }
 
     public void getGender(){
@@ -273,13 +319,14 @@ public class RegisterActivity extends AppCompatActivity
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int aPosition, long l) {
-
+        Log.w(TAG,"AdapterViewID: "+adapterView.getId());
         switch (adapterView.getId()){
             case R.id.marital_spinner:
                 if (aPosition!=0)
                     mMaritalStatus = mMaritalcustomList.get(aPosition).getSpinnerText();
                 break;
             case R.id.eucation_spinner:
+                Log.w(TAG,"education Spinner:");
                 if (aPosition!=0)
                     mEducation = mEducationCustomList.get(aPosition).getSpinnerText();
                 break;
@@ -292,15 +339,17 @@ public class RegisterActivity extends AppCompatActivity
                     mGender = mGenderCustomList.get(aPosition).getSpinnerText();
                 break;
             case R.id.education_status_spinner:
+                Log.w(TAG,"education item: "+mEducationStatusList.get(aPosition).getSpinnerText());
                 if (aPosition!=0)
                     mEducationStatus = mEducationStatusList.get(aPosition).getSpinnerText();
                 break;
             case R.id.state_spinner:
+                Log.w(TAG,"State Spinner: ");
                 if (aPosition!=0)
                     mStateString = mStateCustomList.get(aPosition).getSpinnerText();
-                break;
+                Log.w(TAG,"SELECTED State: "+mStateCustomList.get(aPosition).getSpinnerText());
             case R.id.district_spinner:
-                Log.w(TAG,"SELECTED ITEM: "+mStateCustomList.get(aPosition).getSpinnerText());
+                Log.w(TAG,"SELECTED ITEM: "+mStateString);
                 String sp1= String.valueOf(mStateCustomList.get(aPosition).getSpinnerText());
                 Toast.makeText(this, sp1, Toast.LENGTH_SHORT).show();
                 switch(sp1){
@@ -1567,6 +1616,7 @@ public class RegisterActivity extends AppCompatActivity
                         });
                         break;
                      default:
+                         Log.w(TAG,"Default value: ");
                          List<String> lDfDistrictlist = new ArrayList<String>();
                          lDfDistrictlist.add("Select District");
                          ArrayAdapter<String> lDfAdapter = new ArrayAdapter<String>(this,
@@ -1592,18 +1642,19 @@ public class RegisterActivity extends AppCompatActivity
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String lFullNameString = mFullName.getText().toString();
+                String lUniqueString = mUniqueid.getText().toString();
                 String lFatherNameString = mFatherName.getText().toString();
                 String lMotherNameString = mMotherName.getText().toString();
                 String lMobileNumberString = mMobileNumber.getText().toString();
                 String lDOBString = mDOBEditText.getText().toString();
                 String lOccupationString = mOccupationEditText.getText().toString();
+                String lEduDisc = mEducationDiscription.getText().toString();
                 String lFlatString = mFlatEditText.getText().toString();
                 String lBuildingString = mBuildingEditText.getText().toString();
                 String lPinCodeString = mPinCodeEditText.getText().toString();
                 String lAreaString = mAreaEditText.getText().toString();
                 mRoadLane = mRoadStreet.getText().toString();
-                if (lFullNameString.isEmpty()){
+                if (mFullNameString.isEmpty()){
                     mFullName.setError("Please fill the box");
                     mFullName.requestFocus();
                 }
@@ -1612,7 +1663,10 @@ public class RegisterActivity extends AppCompatActivity
                     mFatherName.setError("Please fill the box");
                     mFatherName.requestFocus();
                 }
-
+                else if(lEduDisc.isEmpty()){
+                    mEducationDiscription.setError("Please fill the box");
+                    mEducationDiscription.requestFocus();
+                }
                 else if(lMotherNameString.isEmpty()){
                     mMotherName.setError("Please fill the box");
                     mMotherName.requestFocus();
@@ -1656,7 +1710,8 @@ public class RegisterActivity extends AppCompatActivity
                     mPinCodeEditText.requestFocus();
                 } else {
                     Intent lIntent = new Intent(RegisterActivity.this,UserConfermActivity.class);
-                    lIntent.putExtra("name",lFullNameString);
+                    lIntent.putExtra("uniqueId", lUniqueString);
+                    lIntent.putExtra("name",mFullNameString);
                     lIntent.putExtra("fathername",lFatherNameString);
                     lIntent.putExtra("mothername",lMotherNameString);
                     lIntent.putExtra("mobile",lMobileNumberString);
@@ -1665,6 +1720,7 @@ public class RegisterActivity extends AppCompatActivity
                     lIntent.putExtra("marital",mMaritalStatus);
                     lIntent.putExtra("qualification",mEducation);
                     lIntent.putExtra("edicationstatus",mEducationStatus);
+                    lIntent.putExtra("edudisc", lEduDisc);
                     lIntent.putExtra("occupation",mOccupation);
                     lIntent.putExtra("occupationDescription",lOccupationString);
                     lIntent.putExtra("flat",lFlatString);
@@ -1674,6 +1730,7 @@ public class RegisterActivity extends AppCompatActivity
                     lIntent.putExtra("pincode",lPinCodeString);
                     lIntent.putExtra("state",mStateString);
                     lIntent.putExtra("district",mDistrictString);
+                    Log.w(TAG,"Get State And District: "+mStateString+" "+mDistrictString);
                     startActivity(lIntent);
                     Log.w(TAG, "Selected Spinner: " + mMaritalSpinner.getAdapter().toString());
 

@@ -10,17 +10,18 @@
     android:paddingTop="50dp">
     <TextView
         android:id="@+id/about_id"
-        android:layout_width="45dp"
+        android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_marginRight="24dp"
         android:layout_gravity="right"
         android:layout_marginBottom="24dp"
-        android:text="A"
+        android:text="About Us!"
         android:textSize="16sp"
+        android:padding="10dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:fontFamily="@font/roboto_slab_bold"
-        android:textColor="@color/colorForRecyclerviewText"
+        android:textColor="@color/colorPrimaryBlack"
         android:background="@drawable/about_us_circle"/>
     <ImageView
         android:layout_width="200dp"

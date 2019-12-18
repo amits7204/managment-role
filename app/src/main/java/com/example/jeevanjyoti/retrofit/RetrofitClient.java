@@ -28,4 +28,5 @@ public class RetrofitClient {
     public static UserRegisterApi postUserdata(){
         return getClient().create(UserRegisterApi.class);
     }
+
 }

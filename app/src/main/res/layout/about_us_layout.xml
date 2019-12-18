@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_gravity="center"
     android:background="@color/colorAboutUsBackGround">
 
     <ImageView
@@ -27,8 +28,33 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="24dp"
         android:fontFamily="@font/roboto_slab_bold"
-        android:textSize="16sp"
-        android:layout_marginTop="50dp"
+        android:textSize="12sp"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/colorSecondarylinearLaout"/>
+
+    <TextView
+        android:id="@+id/our_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="24dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:textSize="12sp"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/colorSecondarylinearLaout"/>
+
+
+    <TextView
+        android:id="@+id/our_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="24dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:textSize="12sp"
+        android:layout_marginTop="5dp"
         android:layout_gravity="center"
         android:layout_marginLeft="30dp"
         android:textColor="@color/colorSecondarylinearLaout"/>

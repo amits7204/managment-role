@@ -2,8 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryBlack"
+    android:background="@color/colorAccent"
     android:clickable="true"
     android:fitsSystemWindows="true"
     android:focusable="true">
@@ -14,14 +15,18 @@
         android:text="User Details"
         android:fontFamily="@font/roboto_slab_bold"
         android:textSize="16sp"
+        android:textColor="@color/colorPrimaryBlack"
         android:layout_margin="20dp"/>
-    <ProgressBar
-        android:id="@+id/user_progressbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone"
-        android:layout_centerInParent="true"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_fileName="data.json"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"/>
+
     <ImageView
         android:id="@+id/download_image"
         android:layout_width="30dp"

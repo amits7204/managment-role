@@ -5,59 +5,28 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Volunteer {
-    @SerializedName("image")
-    @Expose
-    private String mProfileImage;
-    @SerializedName("gender")
-    @Expose
-    private String mGender;
-    @SerializedName("name")
-    @Expose
-    private String mFullName;
-    @SerializedName("mobile")
-    @Expose
-    private String mMobileNumber;
-    @SerializedName("address")
-    @Expose
-    private String mAddress;
+    private String msg;
 
-    public String getProfileImage() {
-        return mProfileImage;
+    private boolean status;
+
+    private String data;
+
+    public void setMsg(String msg){
+        this.msg = msg;
     }
-
-    public void setProfileImage(String aProfileImage) {
-        this.mProfileImage = aProfileImage;
+    public String getMsg(){
+        return this.msg;
     }
-
-    public String getGender() {
-        return mGender;
+    public void setStatus(boolean status){
+        this.status = status;
     }
-
-    public void setGender(String aGender) {
-        this.mGender = aGender;
+    public boolean getStatus(){
+        return this.status;
     }
-
-    public String getFullName() {
-        return mFullName;
+    public void setData(String data){
+        this.data = data;
     }
-
-    public void setFullName(String aFullName) {
-        this.mFullName = aFullName;
-    }
-
-    public String getMobileNumber() {
-        return mMobileNumber;
-    }
-
-    public void setMobileNumber(String aMobileNumber) {
-        this.mMobileNumber = aMobileNumber;
-    }
-
-    public String getAddress() {
-        return mAddress;
-    }
-
-    public void setAddress(String aAddress) {
-        this.mAddress = aAddress;
+    public String getData(){
+        return this.data;
     }
 }

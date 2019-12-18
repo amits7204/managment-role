@@ -18,7 +18,7 @@ public class VolunteerDashBoard extends AppCompatActivity {
         lTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent lIntent = new Intent(VolunteerDashBoard.this,RegisterActivity.class);
+                Intent lIntent = new Intent(VolunteerDashBoard.this,YesOrNoActivity.class);
                 startActivity(lIntent);
             }
         });

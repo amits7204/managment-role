@@ -15,7 +15,7 @@
             android:id="@+id/volunteer_user_register_textview"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimaryBlack"
             android:text="User Register"
             android:textSize="18sp"
             android:gravity="center"

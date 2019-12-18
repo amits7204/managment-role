@@ -41,9 +41,17 @@ public class VolunteerAdapter extends RecyclerView.Adapter<VolunteerAdapter.Volu
                 .into(aViewholder.mImageView);
         Log.w(TAG,"IMAGE URL: "+mVolunteerRoot.getData().get(position).getImage_url());
         aViewholder.mFullName.setText(mVolunteerRoot.getData().get(position).getName());
+        aViewholder.mFatherName.setText(mVolunteerRoot.getData().get(position).getFathername());
+        aViewholder.mDob.setText(mVolunteerRoot.getData().get(position).getDateofbirth());
         aViewholder.mGender.setText(mVolunteerRoot.getData().get(position).getGender());
         aViewholder.mMobileNumber.setText(mVolunteerRoot.getData().get(position).getMobile());
-        aViewholder.mFullAddress.setText(mVolunteerRoot.getData().get(position).getAddress());
+        aViewholder.mFullAddress.setText(mVolunteerRoot.getData().get(position).getFlat_room_block_no()+
+                " "+mVolunteerRoot.getData().get(position).getPremises_building_villa()+" "+
+                mVolunteerRoot.getData().get(position).getRoad_street_lane()+" "+
+                mVolunteerRoot.getData().get(position).getArea_locality_taluk()+" "+
+                mVolunteerRoot.getData().get(position).getPin_code()+" "+
+                mVolunteerRoot.getData().get(position).getState()+" "+
+                mVolunteerRoot.getData().get(position).getDistrict());
     }
 
     @Override
@@ -51,12 +59,14 @@ public class VolunteerAdapter extends RecyclerView.Adapter<VolunteerAdapter.Volu
         return mVolunteerRoot.getData().size();
     }
 
-    public class VolunteerViewHolder extends RecyclerView.ViewHolder {
-        public ImageView mImageView;
-        public TextView mFullName, mGender, mFullAddress, mMobileNumber;
-        public VolunteerViewHolder(@NonNull View itemView) {
+    class VolunteerViewHolder extends RecyclerView.ViewHolder {
+        ImageView mImageView;
+        TextView mFullName, mGender, mFullAddress, mMobileNumber, mFatherName, mDob;
+        VolunteerViewHolder(@NonNull View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.profile_imageview);
+            mFatherName = itemView.findViewById(R.id.father_name_text_view);
+            mDob = itemView.findViewById(R.id.v_dob_text_view);
             mFullName = itemView.findViewById(R.id.full_name_text_view);
             mGender = itemView.findViewById(R.id.gender_text_view);
             mMobileNumber = itemView.findViewById(R.id.mobile_text_view);

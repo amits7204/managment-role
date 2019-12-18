@@ -1,261 +1,404 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorPrimaryBlack">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/full_name_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="24dp"
-                android:background="@drawable/secondary_primary_box"
-                android:hint="Enter Full Name"
-                android:paddingLeft="16dp"
-                android:textColor="@color/colorAccent"
-                android:textColorHint="@color/colorSecondaryHint" />
-
-            <EditText
-                android:id="@+id/father_name_edit_Text"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:hint="Enter Father's Name or Husband Name"
-                android:paddingLeft="16dp"
-                android:background="@drawable/secondary_primary_box"
-                android:textColor="@color/colorAccent"
-                android:textColorHint="@color/colorSecondaryHint" />
-
-            <EditText
-                android:id="@+id/mother_name_edit_Text"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:hint="Mother's name"
-                android:paddingLeft="16dp"
-                android:background="@drawable/secondary_primary_box"
-                android:textColor="@color/colorAccent"
-                android:textColorHint="@color/colorSecondaryHint"  />
-
-            <EditText
-                android:id="@+id/mobile_number_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:maxLength="10"
-                android:hint="Mobile Number"
-                android:inputType="phone"
-                android:paddingLeft="16dp"
-                android:background="@drawable/secondary_primary_box"
-                android:textColor="@color/colorAccent"
-                android:textColorHint="@color/colorSecondaryHint"  />
-
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="24dp"
+            android:background="@drawable/primary_linear_layout_shape">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:orientation="horizontal"
-                android:gravity="center">
-                <Spinner
-                    android:id="@+id/gender_spinner"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/user_personal_details"
                     android:layout_width="match_parent"
-                    android:layout_height="58dp"
-                    android:gravity="center"
-                    android:spinnerMode="dropdown"
-                    android:overlapAnchor="false"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="6dp"
-                    android:background="@drawable/spinner_shape" />
+                    android:text="User Personal Details"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/roboto_slab_bold"/>
+                <ImageView
+                    android:id="@+id/user_details_imageview"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_add_circle"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginRight="24dp"/>
+            </LinearLayout>
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginLeft="24dp"
+                android:background="@color/colorPrimaryHint"/>
+            <FrameLayout
+                android:id="@+id/user_personal_framelayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:visibility="gone">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/unique_id_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="58dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/secondary_primary_box"
+                        android:hint="Enter your unique id"
+                        android:paddingLeft="16dp"
+                        android:visibility="gone"
+                        android:textColor="@color/colorAccent"
+                        android:textColorHint="@color/colorSecondaryHint" />
+
+                    <EditText
+                        android:id="@+id/full_name_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="58dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/secondary_primary_box"
+                        android:hint="Enter Full Name"
+                        android:paddingLeft="16dp"
+                        android:textColor="@color/colorAccent"
+                        android:textColorHint="@color/colorSecondaryHint" />
 
                 <EditText
-                    android:id="@+id/dob_text_view"
+                    android:id="@+id/father_name_edit_Text"
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                    android:hint="Date of Birth"
-                    android:inputType="date"
-                    android:focusable="false"
-                    android:focusableInTouchMode="true"
-                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="10dp"
+                    android:hint="Enter Father's Name or Husband Name"
+                    android:paddingLeft="16dp"
                     android:background="@drawable/secondary_primary_box"
                     android:textColor="@color/colorAccent"
-                    android:textColorHint="@color/colorSecondaryHint"
-                    android:layout_weight="1"/>
+                    android:textColorHint="@color/colorSecondaryHint" />
 
+                <EditText
+                    android:id="@+id/mother_name_edit_Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="10dp"
+                    android:hint="Mother's name"
+                    android:paddingLeft="16dp"
+                    android:background="@drawable/secondary_primary_box"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/colorSecondaryHint"  />
+
+                <EditText
+                    android:id="@+id/mobile_number_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="10dp"
+                    android:maxLength="10"
+                    android:hint="Mobile Number"
+                    android:inputType="phone"
+                    android:paddingLeft="16dp"
+                    android:background="@drawable/secondary_primary_box"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/colorSecondaryHint"  />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <Spinner
+                        android:id="@+id/gender_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="58dp"
+                        android:gravity="center"
+                        android:spinnerMode="dropdown"
+                        android:overlapAnchor="false"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/spinner_shape" />
+
+                    <EditText
+                        android:id="@+id/dob_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="58dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="10dp"
+                        android:hint="Date of Birth"
+                        android:inputType="date"
+                        android:focusable="false"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center"
+                        android:background="@drawable/secondary_primary_box"
+                        android:textColor="@color/colorAccent"
+                        android:textColorHint="@color/colorSecondaryHint"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/marital_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/spinner_shape" />
+                    <Spinner
+                        android:id="@+id/occupation_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="58dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/spinner_shape" />
+
+                    <EditText
+                        android:id="@+id/occupation_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="58dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="10dp"
+                        android:hint="Occupation Description"
+                        android:inputType="textMultiLine"
+                        android:lines="3"
+                        android:paddingLeft="16dp"
+                        android:background="@drawable/secondary_primary_box"
+                        android:textColor="@color/colorAccent"
+                        android:textColorHint="@color/colorSecondaryHint"  />
+                </LinearLayout>
+            </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/user_education_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    android:text="User Education Details"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_slab_bold"/>
+                <ImageView
+                    android:id="@+id/user_education_image"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_add_circle"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginRight="24dp"/>
             </LinearLayout>
-
-            <Spinner
-                android:id="@+id/marital_spinner"
+            <View
+                android:id="@+id/view2"
                 android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="1dp"
                 android:layout_marginRight="24dp"
-                android:background="@drawable/spinner_shape" />
-
-            <Spinner
-                android:id="@+id/eucation_spinner"
+                android:layout_marginLeft="24dp"
+                android:background="@color/colorPrimaryHint"/>
+            <FrameLayout
+                android:id="@+id/user_education_framelayout"
                 android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginLeft="24dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:background="@drawable/spinner_shape" />
+                android:visibility="gone">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                <Spinner
+                    android:id="@+id/eucation_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/spinner_shape" />
 
-            <Spinner
-                android:id="@+id/education_status_spinner"
+                <Spinner
+                    android:id="@+id/education_status_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="18dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/spinner_shape" />
+                <EditText
+                    android:id="@+id/edu_desc_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginRight="10dp"
+                    android:hint="Education discription"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:paddingLeft="16dp"
+                    android:background="@drawable/secondary_primary_box"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/colorSecondaryHint"  />
+                </LinearLayout>
+            </FrameLayout>
+            <LinearLayout
+                android:id="@+id/user_contact_linear_layout"
                 android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:gravity="center"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/user_contact_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    android:text="User Contact Details"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_slab_bold"/>
+                <ImageView
+                    android:id="@+id/user_contact_image"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_add_circle"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginRight="24dp"/>
+            </LinearLayout>
+            <FrameLayout
+                android:id="@+id/user_contact_frame_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:background="@drawable/spinner_shape" />
+                android:visibility="gone">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                <EditText
+                    android:id="@+id/flat_room_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginRight="10dp"
+                    android:hint="Flat/Room/Block no"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:paddingLeft="16dp"
+                    android:background="@drawable/secondary_primary_box"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/colorSecondaryHint"  />
 
-            <Spinner
-                android:id="@+id/occupation_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:background="@drawable/spinner_shape" />
+                <EditText
+                    android:id="@+id/building_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="10dp"
+                    android:hint="Bulding/villege"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:paddingLeft="16dp"
+                    android:background="@drawable/secondary_primary_box"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/colorSecondaryHint"  />
+                <EditText
+                    android:id="@+id/road_lane"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="10dp"
+                    android:hint="Road/Street/Lane"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:paddingLeft="16dp"
+                    android:background="@drawable/secondary_primary_box"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/colorSecondaryHint"  />
 
-            <EditText
-                android:id="@+id/occupation_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:hint="Occupation Description"
-                android:inputType="textMultiLine"
-                android:lines="3"
-                android:paddingLeft="16dp"
-                android:background="@drawable/secondary_primary_box"
-                android:textColor="@color/colorAccent"
-                android:textColorHint="@color/colorSecondaryHint"  />
+                <EditText
+                    android:id="@+id/area_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="10dp"
+                    android:hint="Area/locality"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:paddingLeft="16dp"
+                    android:background="@drawable/secondary_primary_box"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/colorSecondaryHint"  />
 
-            <EditText
-                android:id="@+id/flat_room_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:hint="Flat/Room/Block no"
-                android:inputType="textMultiLine"
-                android:lines="3"
-                android:paddingLeft="16dp"
-                android:background="@drawable/secondary_primary_box"
-                android:textColor="@color/colorAccent"
-                android:textColorHint="@color/colorSecondaryHint"  />
+                <EditText
+                    android:id="@+id/pin_code_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="10dp"
+                    android:hint="Pin Code"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:lines="3"
+                    android:paddingLeft="16dp"
+                    android:background="@drawable/secondary_primary_box"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/colorSecondaryHint"  />
 
-            <EditText
-                android:id="@+id/building_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:hint="Bulding/villege"
-                android:inputType="textMultiLine"
-                android:lines="3"
-                android:paddingLeft="16dp"
-                android:background="@drawable/secondary_primary_box"
-                android:textColor="@color/colorAccent"
-                android:textColorHint="@color/colorSecondaryHint"  />
-            <EditText
-                android:id="@+id/road_lane"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:hint="Road/Street/Lane"
-                android:inputType="textMultiLine"
-                android:lines="3"
-                android:paddingLeft="16dp"
-                android:background="@drawable/secondary_primary_box"
-                android:textColor="@color/colorAccent"
-                android:textColorHint="@color/colorSecondaryHint"  />
+                <Spinner
+                    android:id="@+id/state_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/spinner_shape" />
 
-            <EditText
-                android:id="@+id/area_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:hint="Area/locality"
-                android:inputType="textMultiLine"
-                android:lines="3"
-                android:paddingLeft="16dp"
-                android:background="@drawable/secondary_primary_box"
-                android:textColor="@color/colorAccent"
-                android:textColorHint="@color/colorSecondaryHint"  />
-
-            <EditText
-                android:id="@+id/pin_code_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:hint="Pin Code"
-                android:inputType="number"
-                android:maxLength="6"
-                android:lines="3"
-                android:paddingLeft="16dp"
-                android:background="@drawable/secondary_primary_box"
-                android:textColor="@color/colorAccent"
-                android:textColorHint="@color/colorSecondaryHint"  />
-
-            <Spinner
-                android:id="@+id/state_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:background="@drawable/spinner_shape" />
-
-            <Spinner
-                android:id="@+id/district_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="24dp"
-                android:background="@drawable/spinner_shape" />
-
+                <Spinner
+                    android:id="@+id/district_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/spinner_shape" />
+                </LinearLayout>
+            </FrameLayout>
             <Button
                 android:id="@+id/register_button"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="Register"
                 android:textSize="16dp"
-                android:background="@drawable/primary_round_button"
+                android:background="@drawable/about_us_circle"
                 android:textColor="@color/colorPrimaryBlack"
                 android:fontFamily="@font/roboto_slab_bold"
                 android:layout_margin="24dp" />
         </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

@@ -25,6 +25,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.jeevanjyoti.adapter.UserAdapter;
 import com.example.jeevanjyoti.retrofit.RetrofitClient;
 import com.example.jeevanjyoti.retrofit.UserRegisterApi;
@@ -33,6 +34,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,10 +45,10 @@ public class UserDetailsActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private UserRoot mUserData = new UserRoot();
     private UserAdapter mUserAdapter;
-    private ProgressBar mUserProgressBar;
     private static final String TAG = "UserDetailsActivity";
     private DownloadManager downloadManager;
     private long refid;
+    private LottieAnimationView mAnimationView;
     private Uri Download_Uri;
     ArrayList<Long> list = new ArrayList<>();
     BroadcastReceiver onComplete;
@@ -56,14 +59,11 @@ public class UserDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_list_recycler_view);
         mRecyclerView = findViewById(R.id.user_recylerview);
-        mUserProgressBar = findViewById(R.id.user_progressbar);
-        mUserProgressBar.setVisibility(View.VISIBLE);
+        mAnimationView = findViewById(R.id.animation_view);
+        mAnimationView.playAnimation();
         mDownloadImageView = findViewById(R.id.download_image);
         getUserData();
         downLoadFile();
-//        if (!isStoragePermissionGranted()){
-//            downLoadFile();
-//        }
     }
 
     public void getUserData(){
@@ -72,23 +72,26 @@ public class UserDetailsActivity extends AppCompatActivity {
         lJsonObject.enqueue(new Callback<UserRoot>() {
             @Override
             public void onResponse(Call<UserRoot> call, Response<UserRoot> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful() && response.body()!=null){
                     Log.w(TAG,"Get User Response: "+response.body().getData());
                     mUserData = response.body();
                     mUserAdapter = new UserAdapter(getApplicationContext(), mUserData);
                     LinearLayoutManager lLinearLayOutManager = new LinearLayoutManager(getApplicationContext());
                     mRecyclerView.setLayoutManager(lLinearLayOutManager);
                     mRecyclerView.setAdapter(mUserAdapter);
-                    mUserProgressBar.setVisibility(View.GONE);
+                    mAnimationView.cancelAnimation();
+                    mAnimationView.setVisibility(View.GONE);
                 }else{
                     Toast.makeText(getApplicationContext(),"Something is wrong", Toast.LENGTH_SHORT).show();
-                    mUserProgressBar.setVisibility(View.GONE);
+                    mAnimationView.cancelAnimation();
+                    mAnimationView.setVisibility(View.GONE);
                 }
             }
 
             @Override
             public void onFailure(Call<UserRoot> call, Throwable t) {
-                mUserProgressBar.setVisibility(View.GONE);
+                mAnimationView.cancelAnimation();
+                mAnimationView.setVisibility(View.GONE);
             }
         });
     }
