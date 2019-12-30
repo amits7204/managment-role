@@ -63,7 +63,6 @@
                         android:background="@drawable/secondary_primary_box"
                         android:hint="Enter your unique id"
                         android:paddingLeft="16dp"
-                        android:visibility="gone"
                         android:textColor="@color/colorAccent"
                         android:textColorHint="@color/colorSecondaryHint" />
 

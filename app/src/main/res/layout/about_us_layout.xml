@@ -1,107 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:background="@color/colorAboutUsBackGround">
+    android:background="@color/colorAboutUsBackGround"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/playstore_logo"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/playstore_logo" />
 
     <TextView
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="About Us"
+        android:layout_marginStart="24dp"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="28dp"
         android:fontFamily="@font/roboto_slab_bold"
-        android:textSize="24sp"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="30dp"
-        android:textColor="@color/colorPrimaryBlack"/>
+        android:text="About Us"
+        android:textColor="@color/colorPrimaryBlack"
+        android:textSize="24sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:weightSum="7"
+        android:layout_below="@id/textView5">
     <TextView
         android:id="@+id/about_us"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="24dp"
-        android:fontFamily="@font/roboto_slab_bold"
-        android:textSize="12sp"
-        android:layout_marginTop="5dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="30dp"
-        android:textColor="@color/colorSecondarylinearLaout"/>
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="24dp"
+        android:layout_weight="1"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:textColor="@color/colorSecondarylinearLaout"
+        android:textSize="12sp"/>
 
     <TextView
         android:id="@+id/our_team"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="24dp"
-        android:fontFamily="@font/roboto_slab_bold"
-        android:textSize="12sp"
-        android:layout_marginTop="5dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="30dp"
-        android:textColor="@color/colorSecondarylinearLaout"/>
-
+        android:layout_weight="1"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:textColor="@color/colorSecondarylinearLaout"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/our_history"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="24dp"
-        android:fontFamily="@font/roboto_slab_bold"
-        android:textSize="12sp"
-        android:layout_marginTop="5dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="30dp"
-        android:textColor="@color/colorSecondarylinearLaout"/>
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:textColor="@color/colorSecondarylinearLaout"
+        android:textSize="12sp" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="24dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1"
+        android:layout_marginEnd="24dp"
         android:fontFamily="@font/roboto_slab_bold"
-        android:textSize="14sp"
         android:text="A-140 Lav Kush Nagar Sector-22 Indira Nagar"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="30dp"
-        android:textColor="@color/colorSecondarylinearLaout"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="24dp"
-        android:fontFamily="@font/roboto_slab_bold"
-        android:textSize="14sp"
-        android:text="Lucknow-226016"
-        android:layout_marginTop="4dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="30dp"
-        android:textColor="@color/colorSecondarylinearLaout"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="24dp"
-        android:fontFamily="@font/roboto_slab_bold"
-        android:textSize="14sp"
-        android:text="Mob- 8840665201"
-        android:layout_marginTop="4dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="30dp"
-        android:textColor="@color/colorSecondarylinearLaout"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="24dp"
-        android:fontFamily="@font/roboto_slab_bold"
-        android:textSize="14sp"
-        android:text="Email Id-jeeven.jyoti.systems@gmail.com"
-        android:layout_marginTop="4dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="30dp"
-        android:textColor="@color/colorSecondarylinearLaout"/>
+        android:textColor="@color/colorSecondarylinearLaout"
+        android:textSize="12sp" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:text="Lucknow-226016"
+        android:textColor="@color/colorSecondarylinearLaout"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:text="Mob- 8840665201"
+        android:textColor="@color/colorSecondarylinearLaout"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="6dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="25dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:text="Email Id-jeeven.jyoti.systems@gmail.com"
+        android:textColor="@color/colorSecondarylinearLaout"
+        android:textSize="12sp" />
+    </LinearLayout>
+</RelativeLayout>

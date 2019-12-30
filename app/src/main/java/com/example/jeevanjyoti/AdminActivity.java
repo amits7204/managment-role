@@ -27,8 +27,8 @@ public class AdminActivity extends AppCompatActivity {
     private int REQUEST_CODE_READ_SMS = 1;
     private EditText mMobileNumberEditText;
     private  Button mButton;
-    private String mMobileString = "8697903433";
-//    private String mMobileString = "9198976789";
+//    private String mMobileString = "8697903433";
+    private String mMobileString = "9198976789";
     private ProgressBar mProgressBar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

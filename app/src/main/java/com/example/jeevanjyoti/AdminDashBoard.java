@@ -28,6 +28,7 @@ public class AdminDashBoard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent lIntent = new Intent(AdminDashBoard.this, YesOrNoActivity.class);
+                lIntent.putExtra("Activity", "A");
                 startActivity(lIntent);
             }
         });

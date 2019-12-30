@@ -7,9 +7,13 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-public class RetrofitClient {
-    private static final String BASE_URL = "http://35.224.167.35/";
+public class RetrofitUserClient {
+
+    private static final String BASE_URL = "http://35.222.58.94/";
+//    private static final String BASE_URL = "http://192.168.1.8:80/";
+
     private static Retrofit mRetrofit = null;
 
     private static Retrofit getClient() {
@@ -30,7 +34,7 @@ public class RetrofitClient {
         return mRetrofit;
     }
 
-    public static UserRegisterApi postUserdata(){
+    public static UserRegisterApi userdata(){
         return getClient().create(UserRegisterApi.class);
     }
 

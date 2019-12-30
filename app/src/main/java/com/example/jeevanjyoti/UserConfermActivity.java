@@ -1,6 +1,7 @@
 package com.example.jeevanjyoti;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,11 +20,16 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.jeevanjyoti.otpPojo.OtpRoot;
 import com.example.jeevanjyoti.registerencapsulation.UserRegister;
 import com.example.jeevanjyoti.retrofit.RetrofitClient;
+import com.example.jeevanjyoti.retrofit.RetrofitUserClient;
 import com.example.jeevanjyoti.retrofit.UserRegisterApi;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,8 +38,7 @@ public class UserConfermActivity extends AppCompatActivity {
     private static final String TAG = "UserConfermActivity";
     TextView mFullName, mFatherName, mMotherName, mMobileNumber,
     mGender, mDOB, mMaritalStatus, mQualification, mEducationStatus,
-    mOccupation, mOccupationDiscription, mFullAddress, mBuilding, mRoadStreet,
-    mArea, mPinCode, mState, mDistrict, mUniqueId, mEduDisc;
+    mOccupation, mOccupationDiscription, mFullAddress, mUniqueId, mEduDisc;
     Button mEditButton, mSaveButton;
     private LottieAnimationView mAnimationView;
     ImageView mSuccessFullImage;
@@ -43,13 +48,13 @@ public class UserConfermActivity extends AppCompatActivity {
     mRoadStreetString, mAreaString, mPinCodeString, mStateString, mDistrictString, mUniqueIdString,
     mEduDiscString;
     Button mVerifyButton;
+    String mChildParent;
     EditText mOtpEditText;
-    FrameLayout mOtpFrameLayout;
+    String mParent = "";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_confirm_activity);
-        mOtpFrameLayout = findViewById(R.id.otp_frame_layout);
         mUniqueId = findViewById(R.id.unique_id);
         mFullName = findViewById(R.id.full_name);
         mFatherName = findViewById(R.id.father_name);
@@ -70,6 +75,7 @@ public class UserConfermActivity extends AppCompatActivity {
         Intent lIntent = getIntent();
         mFullNameString = lIntent.getStringExtra("name");
         mUniqueIdString = lIntent.getStringExtra("uniqueId");
+        mChildParent = lIntent.getStringExtra("parent");
         mFatherNameString = lIntent.getStringExtra("fathername");
 
         mMotherNameString = lIntent.getStringExtra("mothername");
@@ -126,6 +132,7 @@ public class UserConfermActivity extends AppCompatActivity {
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.w(TAG,"PARENT: "+mParent);
                 registerUser();
             }
         });
@@ -136,95 +143,52 @@ public class UserConfermActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        mVerifyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendOtp();
-            }
-        });
-    }
-
-    public void sendOtp(){
-        String lOtpString = mOtpEditText.getText().toString();
-        UserRegisterApi lApi = RetrofitClient.postUserdata();
-        Call<OtpRoot> lOtpRoot = lApi.verifyUserOtp(lOtpString);
-        lOtpRoot.enqueue(new Callback<OtpRoot>() {
-            @Override
-            public void onResponse(Call<OtpRoot> call, Response<OtpRoot> response) {
-                if (response.isSuccessful() && response.body()!=null){
-                    Log.w("OTPVERIFY", "RESPONSE OTP: " + response.body().getData());
-                    String lJson = response.body().getData();
-                    String lStatus = "";
-                    try {
-                        JSONObject lJsonObj = new JSONObject(lJson);
-//                        JSONArray jsonData = lJsonObj.getJSONArray("data");
-                        Log.w(TAG,"JSON Object: "+lJsonObj.length());
-                        for (int i = 0; i<lJsonObj.length(); i++){
-//                            JSONObject jsonOBject = lJsonObj.getJSONObject(i);
-                            lStatus = lJsonObj.getString("Status");
-                            Log.w(TAG,"STATUS: "+lStatus);
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    if (lStatus.equals("Success")) {
-                        mOtpFrameLayout.setVisibility(View.GONE);
-                    }else {
-
-                        mOtpEditText.setError("Please Fill correct OTP");
-                        mOtpEditText.requestFocus();
-                    }
-                }else{
-                    Toast.makeText(getApplicationContext(),"Something is Wrong", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<OtpRoot> call, Throwable t) {
-
-            }
-        });
     }
 
     public void registerUser(){
-        Log.w(TAG,"Education Discription: "+mEduDiscString+ " "+mUniqueIdString);
-        UserRegisterApi lUserRegisterApi = RetrofitClient.postUserdata();
-        Call<UserRegister> lCallUserResponse = lUserRegisterApi.sendUserData(
-                mFullNameString,
-                mUniqueIdString,
-                mFatherNameString,
-                mMotherNameString,
-                mMobile,
-                mGenderString,
-                mDob,
-                mMarital,
-                mQualificationString,
-                mEducationStatusString,
-                mEduDiscString,
-                mOccupationString,
-                mOccupationDisc,
-                mFlatString,
-                mBuildingString,
-                mRoadStreetString,
-                mAreaString,
-                mPinCodeString,
-                mStateString,
-                mDistrictString);
-        lCallUserResponse.enqueue(new Callback<UserRegister>() {
+        if(mChildParent==null){
+            mChildParent = "yes";
+        }
+        Log.w(TAG,"Education Discription: "+mEduDiscString+ " "+mChildParent);
+        Map<String, String> lUserDetails = new HashMap<>();
+        lUserDetails.put("uuid", mUniqueIdString);
+        lUserDetails.put("full_name", mFullNameString);
+        lUserDetails.put("parent", mChildParent);
+        lUserDetails.put("father_name", mFatherNameString);
+        lUserDetails.put("mother_name", mMotherNameString);
+        lUserDetails.put("mobile_no", mMobile);
+        lUserDetails.put("gender", mGenderString);
+        lUserDetails.put("dob", mDob);
+        lUserDetails.put("marital", mMarital);
+        lUserDetails.put("education", mQualificationString);
+        lUserDetails.put("education_status", mEducationStatusString);
+        lUserDetails.put("education_disc", mEduDiscString);
+        lUserDetails.put("occupation", mOccupationString);
+        lUserDetails.put("occupation_disc", mOccupationDisc);
+        lUserDetails.put("flat_no", mFlatString);
+        lUserDetails.put("building_no", mBuildingString);
+        lUserDetails.put("area", mAreaString);
+        lUserDetails.put("road_street", mRoadStreetString);
+        lUserDetails.put("pin_code", mPinCodeString);
+        lUserDetails.put("state", mStateString);
+        lUserDetails.put("district", mDistrictString);
+        Log.w(TAG,"OccupationDisc: "+mOccupationDisc);
+        UserRegisterApi lUserRegisterApi = RetrofitUserClient.userdata();
+        Call<ResponseBody> lCallUserResponse = lUserRegisterApi.sendUserData(lUserDetails);
+        lCallUserResponse.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<UserRegister> call, Response<UserRegister> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Log.w("RegisterActivity", "Response: " + response);
-                if (response.isSuccessful()){
+                if (response.isSuccessful() && response.body()!=null){
                     mSaveButton.setVisibility(View.GONE);
                     mSuccessFullImage.setVisibility(View.VISIBLE);
-                    mOtpFrameLayout.setVisibility(View.VISIBLE);
                 }else {
                     Toast.makeText(getApplicationContext(),"Something is Wrong", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<UserRegister> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.w("RegisterActivity", "Response Failed: " + t.toString() + call.toString());
             }
         });
@@ -232,5 +196,13 @@ public class UserConfermActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        final String MY_PREFS_NAME = "MyPrefsFile";
+        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        String name = prefs.getString("Activity", "No name defined");
+        if (name.equals("A")){
+            finish();
+        }else if (name.equals("V")){
+            finish();
+        }
     }
 }

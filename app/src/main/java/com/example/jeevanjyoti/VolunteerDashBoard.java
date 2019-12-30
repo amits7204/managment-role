@@ -19,6 +19,7 @@ public class VolunteerDashBoard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent lIntent = new Intent(VolunteerDashBoard.this,YesOrNoActivity.class);
+                lIntent.putExtra("Activity", "V");
                 startActivity(lIntent);
             }
         });

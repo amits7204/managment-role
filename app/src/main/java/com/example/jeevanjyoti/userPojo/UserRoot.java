@@ -4,13 +4,14 @@ import java.util.List;
 
 public class UserRoot {
 
-        private List<Data> data;
+    private List<JUser> JUser;
 
-        public void setData(List<Data> data){
-            this.data = data;
-        }
-        public List<Data> getData(){
-            return this.data;
-        }
+    public void setJUser(List<JUser> JUser){
+        this.JUser = JUser;
+    }
+    public List<JUser> getJUser() {
+        return this.JUser;
+    }
+
 }
 

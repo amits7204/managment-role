@@ -22,7 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SplashScreenActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,8 +34,10 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".VolunteerActivity" />
         <activity android:name=".AdminActivity" />
-        <activity android:name=".OtpVerficationActivity" />
-        <activity android:name=".AdminOtpVerifyActivity" />
+        <activity android:name=".OtpVerficationActivity"
+            android:noHistory="true" android:excludeFromRecents="true"/>
+        <activity android:name=".AdminOtpVerifyActivity"
+            android:noHistory="true" android:excludeFromRecents="true"/>
         <activity android:name=".AdminDashBoard" />
         <activity android:name=".VolunteerDetails" />
         <activity android:name=".UserDetailsActivity" />
@@ -43,6 +47,12 @@
         <activity android:name=".AddFamilyActivity" />
         <activity android:name=".YesOrNoActivity" />
         <activity android:name=".RegisterOTPActivity" />
+        <activity android:name=".VerifyMobileNumber" />
+        <activity android:name=".MobileRegisterOtp"
+            android:noHistory="true" android:excludeFromRecents="true"/>
+        <activity android:name=".UUIDRegisterOtp"
+            android:noHistory="true" android:excludeFromRecents="true"/>
+        <activity android:name=".UUIDActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

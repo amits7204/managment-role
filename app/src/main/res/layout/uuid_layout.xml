@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryBlack">
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_margin="24dp"
+        android:background="@drawable/back_button_shape"
+        android:layout_gravity="start|top"
+        android:src="@drawable/ic_back_button"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/back_button"
+        android:layout_marginTop="270dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/v_verify_unique_id"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/third_primary_box"
+            android:hint="Enter your family unique id"
+            android:inputType="number"
+            android:padding="4dp"/>
+
+        <Button
+            android:id="@+id/submit_uuid_number"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/about_us_circle"
+            android:fontFamily="@font/roboto_slab_bold"
+            android:text="Submit"
+            android:textColor="@color/colorPrimaryBlack"
+            android:textSize="16sp" />
+
+
+
+    </LinearLayout>
+</RelativeLayout>

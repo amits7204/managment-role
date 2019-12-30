@@ -26,7 +26,8 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:layout_marginBottom="10dp"
-        android:text="Do you have jeevan jyoti Unique id?."
+        android:text="Are you parent?."
+        android:padding="10dp"
         android:textColor="@color/colorPrimaryBlack"
         android:fontFamily="@font/roboto_slab_bold"/>
     <TextView

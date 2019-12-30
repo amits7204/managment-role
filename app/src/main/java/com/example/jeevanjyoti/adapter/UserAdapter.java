@@ -2,7 +2,9 @@ package com.example.jeevanjyoti.adapter;
 
 import android.app.DownloadManager;
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,7 +44,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserAdapterVie
 
     private Context mContext;
     private UserRoot mUserRoot;
-    private List<String> mStringList;
     public UserAdapter(Context aContext, UserRoot aUserRoot){
         mContext = aContext;
         mUserRoot = aUserRoot;
@@ -56,43 +57,48 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserAdapterVie
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UserAdapter.UserAdapterViewHolder aVieHolder, final int aPosition) {
-        aVieHolder.mFullName.setText(mUserRoot.getData().get(aPosition).getName());
-        aVieHolder.mUniqueId.setText(mUserRoot.getData().get(aPosition).getUnique_id());
-        aVieHolder.mFatherName.setText(mUserRoot.getData().get(aPosition).getFather_husband_name());
-        aVieHolder.mMotherName.setText(mUserRoot.getData().get(aPosition).getMother_name());
-        aVieHolder.mMobileNumber.setText(mUserRoot.getData().get(aPosition).getMobile());
-        aVieHolder.mGender.setText(mUserRoot.getData().get(aPosition).getGender());
-        aVieHolder.mDOB.setText(mUserRoot.getData().get(aPosition).getDob());
-        aVieHolder.mMaritalStatus.setText(mUserRoot.getData().get(aPosition).getMarital_status());
-        aVieHolder.mQualificationStatus.setText(mUserRoot.getData().get(aPosition).getEducation());
-        aVieHolder.mEducationStatus.setText(mUserRoot.getData().get(aPosition).getEducation_status());
-        aVieHolder.mEdudisc.setText(mUserRoot.getData().get(aPosition).getEducation_description());
-        aVieHolder.mOccupation.setText(mUserRoot.getData().get(aPosition).getOccupation());
-        aVieHolder.mOccupationDescription.setText(mUserRoot.getData().get(aPosition).getOccupation_description());
-        aVieHolder.mArea.setText(mUserRoot.getData().get(aPosition).getFlat_room_block_no()+" "+
-                mUserRoot.getData().get(aPosition).getPremises_building_villa()+" "+
-                mUserRoot.getData().get(aPosition).getRoad_street_lane()+" "+
-                mUserRoot.getData().get(aPosition).getArea_locality_taluk()+" "+
-                mUserRoot.getData().get(aPosition).getPin_code()+" "+
-                mUserRoot.getData().get(aPosition).getState()+" "+
-                mUserRoot.getData().get(aPosition).getDistrict());
+    public void onBindViewHolder(@NonNull UserAdapterViewHolder aVieHolder, final int aPosition) {
+        if (mUserRoot.getJUser().get(aPosition).getParent().equals("yes")) {
+            aVieHolder.mFullName.setText(mUserRoot.getJUser().get(aPosition).getFull_name());
+                aVieHolder.mFullName.setTextColor(Color.YELLOW);
+            }else if(mUserRoot.getJUser().get(aPosition).getParent().equals("no")){
+                aVieHolder.mFullName.setText(mUserRoot.getJUser().get(aPosition).getFull_name());
+                aVieHolder.mFullName.setTextColor(Color.WHITE);
+        }
+        aVieHolder.mUniqueId.setText(mUserRoot.getJUser().get(aPosition).getUuid());
+        aVieHolder.mFatherName.setText(mUserRoot.getJUser().get(aPosition).getFather_name());
+        aVieHolder.mMotherName.setText(mUserRoot.getJUser().get(aPosition).getMother_name());
+        aVieHolder.mMobileNumber.setText(mUserRoot.getJUser().get(aPosition).getMobile_no());
+        aVieHolder.mGender.setText(mUserRoot.getJUser().get(aPosition).getGender());
+        aVieHolder.mDOB.setText(mUserRoot.getJUser().get(aPosition).getDob());
+        aVieHolder.mMaritalStatus.setText(mUserRoot.getJUser().get(aPosition).getMarital());
+        aVieHolder.mQualificationStatus.setText(mUserRoot.getJUser().get(aPosition).getEducation());
+        aVieHolder.mEducationStatus.setText(mUserRoot.getJUser().get(aPosition).getEducation_status());
+        aVieHolder.mEdudisc.setText(mUserRoot.getJUser().get(aPosition).getEducation_disc());
+        aVieHolder.mOccupation.setText(mUserRoot.getJUser().get(aPosition).getOccupation());
+        aVieHolder.mOccupationDescription.setText(mUserRoot.getJUser().get(aPosition).getOccupation_disc());
+        aVieHolder.mArea.setText(mUserRoot.getJUser().get(aPosition).getFlat_no()+" "+
+                mUserRoot.getJUser().get(aPosition).getBuilding_no()+" "+
+                mUserRoot.getJUser().get(aPosition).getRoad_street()+" "+
+                mUserRoot.getJUser().get(aPosition).getPin_code()+" "+
+                mUserRoot.getJUser().get(aPosition).getState()+" "+
+                mUserRoot.getJUser().get(aPosition).getDistrict());
 
         aVieHolder.mLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.w("UserAdapter", "OnClick: "+mUserRoot.getData().get(aPosition));
+                Log.w("UserAdapter", "OnClick: "+mUserRoot.getJUser().get(aPosition));
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return mUserRoot.getData().size();
+        return mUserRoot.getJUser().size();
     }
 
-    public class UserAdapterViewHolder extends RecyclerView.ViewHolder {
-        public TextView mFullName, mFatherName, mMotherName, mMobileNumber, mGender, mDOB,
+    class UserAdapterViewHolder extends RecyclerView.ViewHolder {
+        TextView mFullName, mFatherName, mMotherName, mMobileNumber, mGender, mDOB,
         mMaritalStatus, mQualificationStatus, mEducationStatus, mOccupation, mOccupationDescription,
         mArea, mUniqueId, mEdudisc;
         LinearLayout mLinearLayout;

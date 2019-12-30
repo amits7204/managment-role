@@ -28,10 +28,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.jeevanjyoti.adapter.UserAdapter;
 import com.example.jeevanjyoti.retrofit.RetrofitClient;
+import com.example.jeevanjyoti.retrofit.RetrofitUserClient;
 import com.example.jeevanjyoti.retrofit.UserRegisterApi;
 import com.example.jeevanjyoti.userPojo.UserRoot;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,13 +70,13 @@ public class UserDetailsActivity extends AppCompatActivity {
     }
 
     public void getUserData(){
-        UserRegisterApi lUserDataApi = RetrofitClient.postUserdata();
-        Call<UserRoot> lJsonObject = lUserDataApi.fetchUserData();
+        UserRegisterApi lUserDataApi = RetrofitUserClient.userdata();
+        Call<UserRoot> lJsonObject = lUserDataApi.getUserData();
         lJsonObject.enqueue(new Callback<UserRoot>() {
             @Override
             public void onResponse(Call<UserRoot> call, Response<UserRoot> response) {
                 if (response.isSuccessful() && response.body()!=null){
-                    Log.w(TAG,"Get User Response: "+response.body().getData());
+                    Log.w(TAG,"Get User Response: "+response.body().getJUser());
                     mUserData = response.body();
                     mUserAdapter = new UserAdapter(getApplicationContext(), mUserData);
                     LinearLayoutManager lLinearLayOutManager = new LinearLayoutManager(getApplicationContext());
@@ -90,6 +93,7 @@ public class UserDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserRoot> call, Throwable t) {
+                Log.w(TAG,"Failed: "+t.getMessage());
                 mAnimationView.cancelAnimation();
                 mAnimationView.setVisibility(View.GONE);
             }
@@ -152,8 +156,6 @@ public class UserDetailsActivity extends AppCompatActivity {
                 request.setDescription("Downloading " + "JeevanJyoti User" + ".xlsx");
                 request.setVisibleInDownloadsUi(true);
                 request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/Jeevan Jyoti/"  + "/" + "user" + ".xlsx");
-
-
                 refid = downloadManager.enqueue(request);
 
 

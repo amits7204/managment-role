@@ -2,9 +2,11 @@ package com.example.jeevanjyoti;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -58,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity
     public String mMaritalStatus, mEducation, mOccupation, mEducationStatus, mStateString
             , mDistrictString, mRoadLane;
     String mFullNameString;
-    private String mGender;
+    private String mGender, mParent = "", mChildParent = "";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,8 +87,6 @@ public class RegisterActivity extends AppCompatActivity
         mEducationDetailsFL = findViewById(R.id.user_education_framelayout);
         mContactDetailsFL = findViewById(R.id.user_contact_frame_layout);
         mRegisterButton = findViewById(R.id.register_button);
-        LinearLayout mMaleLinearLayout = findViewById(R.id.male_linear_layout);
-        LinearLayout mFemaleLinearLayout = findViewById(R.id.female_linear_layout);
         mEducationStatusSpinner = findViewById(R.id.education_status_spinner);
         getMariatalStatus();
         getEducation();
@@ -124,18 +124,16 @@ public class RegisterActivity extends AppCompatActivity
             }
         });
 
-        Intent lIntentYes = getIntent();
-        String lYesString;
-        lYesString = lIntentYes.getStringExtra("yes");
-        Log.w(TAG,"Yes Button: "+lYesString);
-        if (lYesString != null) {
-            mUniqueid.setVisibility(View.VISIBLE);
-            mFullNameString = mFullName.getText().toString();
-        }else{
-            String lString1 = mFullName.getText().toString();
-            String lString2 = "(Parent)";
-            mFullNameString = lString1.concat(lString2);
-        }
+        Intent lIntentUuid = getIntent();
+        String lUuidString;
+        lUuidString = lIntentUuid.getStringExtra("uuid");
+        Log.w(TAG,"UUid: "+lUuidString);
+        mUniqueid.setText(lUuidString);
+        Intent lIntentyes = getIntent();
+        mParent = lIntentyes.getStringExtra("yes");
+        Log.w(TAG,"PARENT Handle: "+mParent);
+        Intent lParentIntent = getIntent();
+        mParent = lParentIntent.getStringExtra("no");
 
     }
 
@@ -1638,11 +1636,22 @@ public class RegisterActivity extends AppCompatActivity
 
     }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+//        Intent i = new Intent(this, MainActivity.class);
+//
+//        this.finish();
+//        startActivity(i);
+    }
+
     public void registerUser(){
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String lUniqueString = mUniqueid.getText().toString();
+                mFullNameString = mFullName.getText().toString();
                 String lFatherNameString = mFatherName.getText().toString();
                 String lMotherNameString = mMotherName.getText().toString();
                 String lMobileNumberString = mMobileNumber.getText().toString();
@@ -1682,7 +1691,7 @@ public class RegisterActivity extends AppCompatActivity
                 }
                 else if (lOccupationString.isEmpty()){
                     mOccupationEditText.setError("Please Fill Box");
-//                    mOccupationEditText.requestFocus();
+                    mOccupationEditText.requestFocus();
                 }
 
                 else if(lFlatString.isEmpty()){
@@ -1712,6 +1721,7 @@ public class RegisterActivity extends AppCompatActivity
                     Intent lIntent = new Intent(RegisterActivity.this,UserConfermActivity.class);
                     lIntent.putExtra("uniqueId", lUniqueString);
                     lIntent.putExtra("name",mFullNameString);
+                    lIntent.putExtra("parent", mParent);
                     lIntent.putExtra("fathername",lFatherNameString);
                     lIntent.putExtra("mothername",lMotherNameString);
                     lIntent.putExtra("mobile",lMobileNumberString);

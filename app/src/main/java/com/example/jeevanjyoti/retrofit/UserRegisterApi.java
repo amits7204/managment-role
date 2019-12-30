@@ -1,46 +1,38 @@
 package com.example.jeevanjyoti.retrofit;
 
 import com.example.jeevanjyoti.otpPojo.OtpRoot;
-import com.example.jeevanjyoti.registerencapsulation.UserRegister;
+import com.example.jeevanjyoti.otpPojo.RegisterConfirmOtp;
 import com.example.jeevanjyoti.userPojo.UserRoot;
 import com.example.jeevanjyoti.volunteerPojo.VolunteerRoot;
 
-import org.json.JSONObject;
+
+import java.util.Map;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 
 public interface UserRegisterApi {
-    @POST("/registration_form/")
-    @FormUrlEncoded
-    Call<UserRegister> sendUserData(@Field("name") String name,
-                                    @Field("unique_id") String uniqueId,
-                                    @Field("father_husband_name") String fatherName,
-                                    @Field("mother_name") String motherName,
-                                    @Field("mobile") String mobile,
-                                    @Field("gender") String gender,
-                                    @Field("DOB") String DOB,
-                                    @Field("marital_status") String marital,
-                                    @Field("education") String education,
-                                    @Field("education_status") String education_status,
-                                    @Field("education_description") String eduDisc,
-                                    @Field("occupation") String occupation,
-                                    @Field("occupation_description") String occupation_description,
-                                    @Field("flat_room_block_no") String flat_room_block_no,
-                                    @Field("premises_building_villa") String premises_building_villa,
-                                    @Field("road_street_lane") String road_street_lane,
-                                    @Field("area_locality_taluk") String aArea,
-                                    @Field("pin_code") String pin_code,
-                                    @Field("state") String state,
-                                    @Field("district") String district);
+    @Headers({"Content-Type:application/json"})
+    @POST("/user_register")
+    Call<ResponseBody> sendUserData(@Body Map<String, String> userDetails);
+
+    @Headers({"Content-Type:application/json"})
+    @POST("/GetOtp")
+    Call<ResponseBody> sendOtp(@Body Map<String, String> userDetails);
+
+    @Headers({"Content-Type:application/json"})
+    @POST("/ConfirmOtp")
+    Call<RegisterConfirmOtp> confirmOtp(@Body Map<String, String> userMobile);
 
     @POST("/admin_registration/")
     @FormUrlEncoded
@@ -85,4 +77,7 @@ public interface UserRegisterApi {
 
     @GET("media/excel_file/output.xlsx")
     Call<ResponseBody> fetchUserDataFile();
+
+    @GET("get_users")
+    Call<UserRoot> getUserData();
 }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryBlack">
+
+<!--    <TextView-->
+<!--        android:id="@+id/resend_otp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/back_button"-->
+<!--        android:layout_marginStart="141dp"-->
+<!--        android:layout_marginTop="187dp"-->
+<!--        android:gravity="center"-->
+<!--        android:text="Resend OTP: "-->
+<!--        android:textColor="@color/colorAccent" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/resend_otp"
+        android:layout_marginTop="71dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/v_otp_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/third_primary_box"
+            android:hint="Enter your 4 digit number"
+            android:inputType="number"
+            android:maxLength="4"
+            android:padding="4dp" />
+
+        <Button
+            android:id="@+id/verify_user_otp_button"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/about_us_circle"
+            android:fontFamily="@font/roboto_slab_bold"
+            android:text="Verify"
+            android:textColor="@color/colorPrimaryBlack"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</RelativeLayout>

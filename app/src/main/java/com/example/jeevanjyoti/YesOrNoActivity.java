@@ -1,6 +1,7 @@
 package com.example.jeevanjyoti;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,22 +22,24 @@ public class YesOrNoActivity extends AppCompatActivity {
 
         View.OnClickListener lSetOnClickListner;
 
-        String lStringYesNo;
         lSetOnClickListner = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch (view.getId()){
                     case R.id.yes_id:
-                        mIntentYesorNo = new Intent(YesOrNoActivity.this, RegisterActivity.class);
+                        Log.w("YesOrNo", "Yes TextView: "+lYesTextView.getText().toString());
+                        mIntentYesorNo = new Intent(YesOrNoActivity.this, VerifyMobileNumber.class);
                         mIntentYesorNo.putExtra("yes",lYesTextView.getText().toString());
                         startActivity(mIntentYesorNo);
-                        Log.w("YesOrNo", "Yes TextView: "+lYesTextView.getText().toString());
                         break;
                     case R.id.no_id:
-                        mIntentYesorNo = new Intent(YesOrNoActivity.this, RegisterActivity.class);
+                        Log.w("YesOrNo", "NO TextView: "+lNoTextView.getText().toString());
+                        mIntentYesorNo = new Intent(YesOrNoActivity.this, UUIDActivity.class);
                         mIntentYesorNo.putExtra("no",lNoTextView.getText().toString());
                         startActivity(mIntentYesorNo);
-                        Log.w("YesOrNo", "NO TextView: "+lNoTextView.getText().toString());
+                        break;
+                    default:
+                        break;
                 }
             }
         };
@@ -44,20 +47,12 @@ public class YesOrNoActivity extends AppCompatActivity {
         lYesTextView.setOnClickListener(lSetOnClickListner);
         lNoTextView.setOnClickListener(lSetOnClickListner);
 
-//        lYesTextView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//
-//        lNoTextView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent lIntentNO = new Intent(YesOrNoActivity.this, RegisterActivity.class);
-//                lIntentNO.putExtra("no",lNoTextView.getText().toString());
-//                startActivity(lIntentNO);
-//            }
-//        });
+        Intent lIntent = getIntent();
+        String lString = lIntent.getStringExtra("Activity");
+
+        final String MY_PREFS_NAME = "MyPrefsFile";
+        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+        editor.putString("Activity", lString);
+        editor.apply();
     }
 }

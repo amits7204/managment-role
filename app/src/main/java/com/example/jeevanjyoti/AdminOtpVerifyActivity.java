@@ -50,13 +50,6 @@ public class AdminOtpVerifyActivity extends AppCompatActivity {
         verifyOtp();
 
     }
-//    public void hideSoftKeyboard() {
-//        if(getCurrentFocus()!=null) {
-////            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-//            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-//        }
-//
-//    }
     @Override
     protected void onDestroy() {
         SmsDetector.unbindListener();
@@ -84,8 +77,9 @@ public class AdminOtpVerifyActivity extends AppCompatActivity {
                         lCallUserResponse.enqueue(new Callback<AdminOtpVerify>() {
                             @Override
                             public void onResponse(Call<AdminOtpVerify> call, Response<AdminOtpVerify> response) {
-                                Log.w("RegisterActivity", "Response: " + response);
-                                if (response.isSuccessful()) {
+
+                                if (response.isSuccessful() && response.body()!=null) {
+                                    Log.w("AdminOtpVerifyActivity", "Response: " + response);
                                     editor.putString("mobile", lMobileString);
                                     editor.apply();
                                     Intent lIntent = new Intent(AdminOtpVerifyActivity.this, AdminDashBoard.class);
