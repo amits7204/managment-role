@@ -38,6 +38,8 @@ public class UUIDActivity extends AppCompatActivity {
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mSubmitButton.setEnabled(false);
+                mSubmitButton.getBackground().setAlpha(128);
                 registerUuid();
             }
         });
@@ -66,6 +68,7 @@ public class UUIDActivity extends AppCompatActivity {
                     Intent lIntent = new Intent(UUIDActivity.this, UUIDRegisterOtp.class);
                     lIntent.putExtra("uuid", mUuid);
                     lIntent.putExtra("no", "no");
+                    lIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(lIntent);
                 }else {
                     Toast.makeText(getApplicationContext(),"Something went wrong: ",Toast.LENGTH_SHORT).show();

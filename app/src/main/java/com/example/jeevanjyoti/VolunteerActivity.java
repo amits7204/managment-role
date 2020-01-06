@@ -417,6 +417,8 @@ public class VolunteerActivity extends AppCompatActivity
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mButton.setEnabled(false);
+                mButton.getBackground().setAlpha(128);
                 Log.w(TAG,"BITMAP PATH: "+mGender);
                 final String MyPREFERENCES = "MyPrefs" ;
                 SharedPreferences lSharedPref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);

@@ -15,7 +15,7 @@ public class JUser {
     private String marital;
 
     private String dob;
-
+    private String area;
     private String occupation;
 
     private String state;
@@ -69,6 +69,14 @@ public class JUser {
     }
     public String getOccupation_disc(){
         return this.occupation_disc;
+    }
+
+    public String getArea(){
+        return this.area;
+    }
+
+    public void setArea(String aArea){
+        this.area = aArea;
     }
     public void setMarital(String marital){
         this.marital = marital;

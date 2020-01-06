@@ -40,6 +40,8 @@ public class VerifyMobileNumber extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mButton.setEnabled(false);
+                mButton.getBackground().setAlpha(128);
                 registerMobileNumber();
                 mBackImageView.setVisibility(View.VISIBLE);
             }
@@ -81,6 +83,7 @@ public class VerifyMobileNumber extends AppCompatActivity {
                     Intent lIntent = new Intent(VerifyMobileNumber.this, MobileRegisterOtp.class);
                     lIntent.putExtra("mobile", mMobileString);
                     lIntent.putExtra("yes", "yes");
+                    lIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(lIntent);
                 }else {
                     Toast.makeText(getApplicationContext(),"Something went wrong: ",Toast.LENGTH_SHORT).show();

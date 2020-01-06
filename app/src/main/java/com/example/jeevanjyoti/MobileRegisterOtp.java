@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.jeevanjyoti.otpPojo.RegisterConfirmOtp;
 import com.example.jeevanjyoti.retrofit.RetrofitUserClient;
 import com.example.jeevanjyoti.retrofit.UserRegisterApi;
@@ -62,6 +63,7 @@ public class MobileRegisterOtp extends AppCompatActivity {
                     Log.w(TAG, "Response: " + response.body().getUUID());
                     Intent lIntent = new Intent(MobileRegisterOtp.this, RegisterActivity.class);
                     lIntent.putExtra("uuid",response.body().getUUID());
+                    lIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(lIntent);
                     finish();
                 }else if(response.code() == 409){
