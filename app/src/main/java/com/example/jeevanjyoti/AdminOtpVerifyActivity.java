@@ -18,10 +18,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.jeevanjyoti.broadcastReceiver.Common;
 import com.example.jeevanjyoti.broadcastReceiver.SmsDetector;
+import com.example.jeevanjyoti.otpPojo.OtpRoot;
 import com.example.jeevanjyoti.retrofit.AdminOtpVerify;
 import com.example.jeevanjyoti.retrofit.AdminRegister;
 import com.example.jeevanjyoti.retrofit.RetrofitClient;
 import com.example.jeevanjyoti.retrofit.UserRegisterApi;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,14 +43,14 @@ public class AdminOtpVerifyActivity extends AppCompatActivity {
         mOtpEditText = findViewById(R.id.otp_editText);
 //        hideSoftKeyboard();
         mProgress = findViewById(R.id.progressBar_otp);
-        mOtpEditText.setShowSoftInputOnFocus(false);
+//        mOtpEditText.setShowSoftInputOnFocus(false);
         mOtpButton = findViewById(R.id.verify_button);
-        SmsDetector.bindListener(new Common.OTPListener() {
-            @Override
-            public void onOtpReceived(String otp) {
-                mOtpEditText.setText(otp);
-            }
-        });
+//        SmsDetector.bindListener(new Common.OTPListener() {
+//            @Override
+//            public void onOtpReceived(String otp) {
+//                mOtpEditText.setText(otp);
+//            }
+//        });
         verifyOtp();
 
     }
@@ -72,28 +76,47 @@ public class AdminOtpVerifyActivity extends AppCompatActivity {
                         mOtpEditText.requestFocus();
                     }else{
                         UserRegisterApi lUserRegisterApi = RetrofitClient.postUserdata();
-                        Call<AdminOtpVerify> lCallUserResponse = lUserRegisterApi.sendOtpNumber(lOtpString);
+                        Call<OtpRoot> lCallUserResponse = lUserRegisterApi.sendOtpNumber(lOtpString);
 
-                        lCallUserResponse.enqueue(new Callback<AdminOtpVerify>() {
+                        lCallUserResponse.enqueue(new Callback<OtpRoot>() {
                             @Override
-                            public void onResponse(Call<AdminOtpVerify> call, Response<AdminOtpVerify> response) {
+                            public void onResponse(Call<OtpRoot> call, Response<OtpRoot> response) {
 
-                                if (response.isSuccessful() && response.body()!=null) {
-                                    Log.w("AdminOtpVerifyActivity", "Response: " + response);
-                                    editor.putString("mobile", lMobileString);
-                                    editor.apply();
-                                    Intent lIntent = new Intent(AdminOtpVerifyActivity.this, AdminDashBoard.class);
-                                    startActivity(lIntent);
+                                if (response.isSuccessful() && response.body()!=null){
+                                    Log.w("OTPVERIFY", "RESPONSE OTP: " + response.body().getData());
+                                    String lJson = response.body().getData();
+                                    String lStatus = "";
+                                    try {
+                                        JSONObject lJsonObj = new JSONObject(lJson);
+//                        JSONArray jsonData = lJsonObj.getJSONArray("data");
+                                        Log.w(TAG,"JSON Object: "+lJsonObj.length());
+                                        for (int i = 0; i<lJsonObj.length(); i++){
+//                            JSONObject jsonOBject = lJsonObj.getJSONObject(i);
+                                            lStatus = lJsonObj.getString("Status");
+                                            Log.w(TAG,"STATUS: "+lStatus);
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    if (lStatus.equals("Success")) {
+                                        editor.putString("vmobile", lMobileString);
+                                        editor.apply();
+                                        Intent lIntent = new Intent(AdminOtpVerifyActivity.this, AdminDashBoard.class);
+                                        startActivity(lIntent);
+                                        mProgress.setVisibility(View.GONE);
+                                    }else {
+                                        mOtpEditText.setError("Please Fill correct OTP");
+                                        mOtpEditText.requestFocus();
+                                        mProgress.setVisibility(View.GONE);
+                                    }
+                                }else{
+                                    Toast.makeText(getApplicationContext(),"Something is Wrong", Toast.LENGTH_SHORT).show();
                                     mProgress.setVisibility(View.GONE);
-
-                                }else {
-                                    Toast.makeText(getApplicationContext(),"Something is wrong",Toast.LENGTH_SHORT).show();
-                                   mProgress.setVisibility(View.GONE);
                                 }
                             }
 
                             @Override
-                            public void onFailure(Call<AdminOtpVerify> call, Throwable t) {
+                            public void onFailure(Call<OtpRoot> call, Throwable t) {
                                 Log.w("RegisterActivity", "Response Failed: " + t.toString() + call.toString());
                                 Toast.makeText(getApplicationContext(),"Something is wrong",Toast.LENGTH_SHORT).show();
                                mProgress.setVisibility(View.GONE);

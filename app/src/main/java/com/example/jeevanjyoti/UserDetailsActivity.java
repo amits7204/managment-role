@@ -16,14 +16,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,17 +29,9 @@ import com.example.jeevanjyoti.database.DBHelper;
 import com.example.jeevanjyoti.retrofit.RetrofitUserClient;
 import com.example.jeevanjyoti.retrofit.UserRegisterApi;
 import com.example.jeevanjyoti.userPojo.UserRoot;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import org.json.JSONObject;
-
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
-import java.util.Set;
-
 import jxl.Workbook;
 import jxl.WorkbookSettings;
 import jxl.write.Label;

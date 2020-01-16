@@ -24,7 +24,6 @@ import retrofit2.Response;
 
 public class AdminActivity extends AppCompatActivity {
     final static String TAG = "AdminActivity";
-    private int REQUEST_CODE_READ_SMS = 1;
     private EditText mMobileNumberEditText;
     private  Button mButton;
 //    private String mMobileString = "8697903433";
@@ -37,6 +36,7 @@ public class AdminActivity extends AppCompatActivity {
         mButton = findViewById(R.id.admin_button);
         mMobileNumberEditText = findViewById(R.id.admin_mobile);
         mProgressBar = findViewById(R.id.progressBar);
+        int REQUEST_CODE_READ_SMS = 1;
         ActivityCompat.requestPermissions(AdminActivity.this,
                 new String[]{android.Manifest.permission.RECEIVE_SMS}, REQUEST_CODE_READ_SMS);
 
@@ -78,6 +78,8 @@ public class AdminActivity extends AppCompatActivity {
                     Log.w(TAG,"MY Mobile NUmber: "+lMobileString);
                     mMobileNumberEditText.setError("Please Fill required Mobile Number");
                     mMobileNumberEditText.requestFocus();
+                    mProgressBar.setVisibility(View.GONE);
+
                 }
 
             }

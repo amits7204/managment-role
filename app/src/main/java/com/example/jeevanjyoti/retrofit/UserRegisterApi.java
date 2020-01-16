@@ -40,7 +40,7 @@ public interface UserRegisterApi {
 
     @POST("/admin_registration/")
     @FormUrlEncoded
-    Call<AdminOtpVerify> sendOtpNumber(@Field("otp") String otp);
+    Call<OtpRoot> sendOtpNumber(@Field("otp") String otp);
 
     @Multipart
     @POST("volunteer_registration/")

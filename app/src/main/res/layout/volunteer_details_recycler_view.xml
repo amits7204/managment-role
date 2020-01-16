@@ -13,7 +13,7 @@
         android:id="@+id/volunteer_toolbar"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:title="Volunteer Details"
+        android:title="@string/volunteer_details"
         android:titleTextColor="@color/colorPrimaryBlack"
         android:titleMarginStart="100dp"/>
     <com.airbnb.lottie.LottieAnimationView

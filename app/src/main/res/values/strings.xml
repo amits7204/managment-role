@@ -2,6 +2,7 @@
     <string name="app_name">Jeevan Jyoti</string>
     <string name="select_picture">Select Picture</string>
     <string name="internal_storage">Internal Storage</string>
+    <string name="volunteer_details">Volunteer Details</string>
     <string-array name="imagePicker">
         <item>From Gallery</item>
         <item>From Camera</item>
